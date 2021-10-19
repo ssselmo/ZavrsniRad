@@ -1,0 +1,113 @@
+﻿@model DonorCentar.ViewModels.DodajDonacijuViewModel
+
+@{
+    ViewData["Title"] = "Dodaj Donaciju";
+    Layout = "~/Views/Shared/_Donor.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+
+<div class="content-box">
+    <form asp-action="SpasiDonaciju">
+        <div class="form-group">
+            <label for="TipDonacijeId">Tip donacije</label>
+            <select id="TipDonacijeId" asp-for="Donacija.TipDonacijeId" asp-items="Model.TipDonacije" class="form-control">
+                <option value="">Izaberite tip donacije</option>
+            </select>
+            <span asp-validation-for="Donacija.TipDonacijeId"></span>
+        </div>
+        <div class="form-group">
+            <label for="Primalac">Primalac</label>
+            <select id="Primalac" asp-for="Donacija.PrimalacId" asp-items="Model.Primalac" class="form-control">
+                <option value="">Izaberite primaoca</option>
+            </select>
+            <span asp-validation-for="Donacija.PrimalacId"></span>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="Transport">Transport</label>
+            <select id="Primalac" asp-for="Donacija.TransportId" asp-items="Model.Transport" class="form-control">
+                <option value="">Izaberite transport</option>
+            </select>
+            <span asp-validation-for="Donacija.TransportId"></span>
+        </div>
+        <div class="form-group">
+            <label for="VrstaDonacije">Vrsta donacije</label>
+            <select id="VrstaDonacije" asp-for="Donacija.VrstaDonacijeId" asp-items="Model.VrstaDonacije" class="form-control">
+                <option value="">Izaberite vrstu donacije</option>
+            </select>
+            <span asp-validation-for="Donacija.VrstaDonacijeId"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Status">Status</label>
+            <select id="Status" asp-for="Donacija.StatusId" asp-items="Model.Status" class="form-control">
+                <option value="">Izaberite status</option>
+            </select>
+            <span asp-validation-for="Donacija.StatusId"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Informacije">Informacije</label>
+            <select id="Informacije" asp-for="Donacija.InformacijeId" asp-items="Model.Informacije" class="form-control">
+                <option value="">Izaberite informacije</option>
+            </select>
+            <span asp-validation-for="Donacija.InformacijeId"></span>
+        </div>
+        <div class="form-group">
+            <label for="Opis">Opis</label>
+            <textarea id="Opis" asp-for="Donacija.Opis" class="form-control bigger-box"></textarea>
+            <span asp-validation-for="Donacija.Opis"></span>
+        </div>
+        <div class="form-group">
+            <label for="Kolicina">Kolicina</label>
+            <input id="Kolicina" type="text" asp-for="Donacija.Kolicina" class="form-control" />
+            <span asp-validation-for="Donacija.Kolicina"></span>
+        </div>
+        <div class="form-group JedinicaM">
+            <label for="JedinicaMjere">Jedinica mjere</label>
+            <select id="JedinicaMjere" asp-for="Donacija.JedinicaMjere" asp-items="Html.GetEnumSelectList<JedinicaMjere>()" class="form-control">
+                <option value="">Izaberite jedinicu mjere</option>
+            </select>
+            <span asp-validation-for="Donacija.JedinicaMjere"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-dark">Spasi</button>
+    </form>
+
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Donacija spašena</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Donacija je uspješno spašena.</p>
+                </div>
+                <div class="modal-footer">
+                    <a asp-action="DodajDonaciju" class="btn btn-primary">U redu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        if ('@ViewBag.Prikazi' != null && '@ViewBag.Prikazi' == "prikazi")
+        {
+            $('#myModal').modal('show');
+        }
+    </script>
+}

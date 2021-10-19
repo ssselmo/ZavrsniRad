@@ -1,0 +1,42 @@
+﻿@model DonorCentar.ViewModels.PrimalacUploadDokumentVM
+
+@{
+    ViewData["Title"] = "Dodaj dokument";
+    Layout = "~/Views/Shared/_Primalac.cshtml";
+}
+
+<div class="text-center content-box">
+
+
+
+    <form enctype="multipart/form-data" asp-action="UploadDokument">
+        <div class="form-group">
+
+            <label class="naslov">Dodaj dokument</label>
+            <input hidden required asp-for="UploadDokument" onchange="this.form.submit()" />
+
+        </div>
+        <button type="submit" class="btn btn-dark" onclick="if (document.getElementById('UploadDokument').value == '') { document.getElementById('UploadDokument').click(); return false;} ">Dodaj</button>
+        <br />
+        <br />
+
+
+        @if (Model.dokument != null)
+        {
+
+            <div class="form-group">
+                <label class="naslov">Dokument na čekanju</label>
+                <a class="btn btn-dark" href="/Documents/@Model.dokument">Otvori</a>
+
+            </div>
+
+
+        }
+    </form>
+    
+</div>
+
+
+
+
+

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewModel="clr-namespace:DonorCentar.Mobile.ViewModels" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:control="clr-namespace:DonorCentar.Mobile.Controls"
+             x:Class="DonorCentar.Mobile.Views.DojamPage">
+   
+
+
+
+<ContentPage.Content>
+    <ScrollView x:DataType="viewModel:DojamViewModel">
+        <StackLayout Padding="30,20,30,0">
+            <Image Source="logo.png" HeightRequest="90"/>
+            <Label Text="DonorCentar" HorizontalOptions="Center" TextColor="Gray"/>
+            <Label Text="Ostavite dojam !" FontSize="30"/>
+
+
+            <Grid Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label  Text="Vrsta dojma"  TextColor="DarkOrange"/>
+
+
+                <combobox:SfComboBox DataSource="{Binding TipoviDojmova}"  SelectedItem="{Binding TipDojma}" Margin="0,0,0,30" Grid.Column="1" BorderColor="DarkOrange" TextColor="DarkOrange" >
+                </combobox:SfComboBox>
+
+
+
+          
+                <Label Grid.Row="1"  Grid.Column="0" Text="Opis dojma"  TextColor="DarkOrange"/>
+
+                <control:BorderlessEntry  Grid.Row="2" Grid.ColumnSpan="2"
+                                       
+                                       
+                                        HeightRequest="35"
+                                        
+                                        
+                                        FontSize="15"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding Dojam.Opis}">
+
+                </control:BorderlessEntry>
+                <BoxView Grid.Row="3" Grid.ColumnSpan="2" Margin="0,-2,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+
+            </Grid>
+
+
+
+            <Button Margin="100,20,100,0" CornerRadius="4" BackgroundColor="DarkOrange" VerticalOptions="Center" Text="Spremi" Command="{Binding SpremiCommand}"/>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage.Content>
+</ContentPage>

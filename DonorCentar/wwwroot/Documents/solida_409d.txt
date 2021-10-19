@@ -1,0 +1,4 @@
+ako je tip korisnika Donor,Partner, Postavke koristimo korisnikID
+
+Administrator - koristimo tipkorisnikaID
+

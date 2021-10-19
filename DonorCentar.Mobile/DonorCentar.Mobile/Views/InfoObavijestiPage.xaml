@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:control="clr-namespace:DonorCentar.Mobile.Controls" xmlns:behaviour="clr-namespace:DonorCentar.Mobile.Behaviors" xmlns:converter="clr-namespace:DonorCentar.Mobile.Converters" xmlns:viewModel="clr-namespace:DonorCentar.Mobile.ViewModels" xmlns:model="clr-namespace:DonorCentar.Model;assembly=DonorCentar.Model"
+             mc:Ignorable="d"
+             x:Class="DonorCentar.Mobile.Views.InfoObavijestiPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   
+
+
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <StackLayout  x:DataType="viewModel:InfoObavijestiViewModel" Padding="30,20,30,0">
+                <Image Source="logo.png" HeightRequest="90"/>
+                <Label Text="DonorCentar" HorizontalOptions="Center" TextColor="Gray"/>
+                <Label Margin="0,10,0,10" Text="Obavijest" FontSize="25" HorizontalOptions="Center"/>
+
+                <Label Margin="0,20,0,10" FontSize="18" FontAttributes="Bold" Text="{Binding Obavijest.Naslov}"/>
+                <Label FontSize="16" FontAttributes="None" Text="{Binding Obavijest.Sadrzaj}"/>
+                
+                <Label Margin="0,20,0,0" HorizontalOptions="End" Text="{Binding Obavijest.Vrijeme, StringFormat='{0:MMMM dd, yyyy}'}"/>
+
+
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+        
+        

@@ -1,0 +1,134 @@
+﻿@model DonorCentar.ViewModels.KorisnikVM
+@{
+    ViewData["Title"] = "Postavke";
+    var Korisnik = Context.GetLogiraniKorisnik();
+    switch (Korisnik.TipKorisnikaId) {
+        case 1: Layout = "~/Views/Shared/_Donor.cshtml"; break;
+        case 2: Layout = "~/Views/Shared/_Primalac.cshtml"; break;
+        case 3: Layout = "~/Views/Shared/_Partner.cshtml"; break;
+        case 4: Layout = "~/Views/Shared/_Administrator.cshtml"; break;
+    }
+
+    }
+
+
+
+<div class="content-box">
+
+    <div id="postavke-left">
+
+        @if (Model.ProfilnaSlika != null)
+        {
+            
+                var base64 = Convert.ToBase64String(Model.ProfilnaSlika);
+                var imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
+            
+
+            <img src="@imgSrc" class="mb-4"/>
+            
+        }
+        else
+        {
+            <img @(Model.TipKorisnika == "Donor" ? "src=/img/d.png" : "src=/img/p.png")
+                 class="mb-4" />
+        }
+
+        <form enctype="multipart/form-data" asp-action="UploadSlika">
+            @Html.AntiForgeryToken()
+
+
+            <input hidden required asp-for="UploadSlika" onchange="this.form.submit()" />
+
+            <button type="submit" class="btn btn-dark" onclick="if (document.getElementById('UploadSlika').value == '') { document.getElementById('UploadSlika').click(); return false;} ">Dodaj</button>
+            <br />
+            <br />
+
+
+
+        </form>
+
+        <h3 class="text-secondary">@Model.Ime @Model.Prezime</h3>
+
+
+        <p class="text-info"><em>@Model.TipKorisnika</em></p>
+    </div>
+    
+
+    <form asp-action="SpasiPostavke">
+        <h1>@ViewData["Title"]</h1>
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-group">
+            <label for="Ime">Ime</label>
+            <input id="Ime" type="text" asp-for="Ime" class="form-control" />
+            <span asp-validation-for="Ime"></span>
+        </div>
+        <div class="form-group">
+            <label for="Prezime">Prezime</label>
+            <input id="Prezime" type="text" asp-for="Prezime" class="form-control" />
+            <span asp-validation-for="Prezime"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="BrojTelefona">Broj telefona</label>
+            <input id="BrojTelefona" type="text" asp-for="BrojTelefona" class="form-control" />
+            <span asp-validation-for="BrojTelefona"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input id="Email" type="email" asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Adresa">Adresa</label>
+            <input id="Adresa" type="text" asp-for="Adresa" class="form-control" />
+            <span asp-validation-for="Adresa"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Sifra">Šifra</label>
+            <input id="Sifra" type="password" asp-for="Sifra" class="form-control" />
+            <span asp-validation-for="Sifra"></span>
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-dark">Spasi</button>
+    </form>
+
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Potreba spašena</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Potreba je uspješno spašena.</p>
+                </div>
+                <div class="modal-footer">
+                    <a asp-action="DodajPotrebu" class="btn btn-primary">U redu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        if ('@ViewBag.Prikazi' != null && '@ViewBag.Prikazi' == "prikazi")
+        {
+            $('#myModal').modal('show');
+        }
+    </script>
+}

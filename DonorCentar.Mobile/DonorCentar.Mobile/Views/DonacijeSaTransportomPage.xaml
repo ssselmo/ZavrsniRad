@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:control="clr-namespace:DonorCentar.Mobile.Controls" xmlns:behaviour="clr-namespace:DonorCentar.Mobile.Behaviors" xmlns:converter="clr-namespace:DonorCentar.Mobile.Converters" xmlns:viewModel="clr-namespace:DonorCentar.Mobile.ViewModels" xmlns:model="clr-namespace:DonorCentar.Model;assembly=DonorCentar.Model"
+             mc:Ignorable="d"
+             x:Class="DonorCentar.Mobile.Views.DonacijeSaTransportomPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+
+
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <StackLayout x:DataType="viewModel:DonacijeSaTransportomViewModel" Padding="30,20,30,0">
+                <Image Source="logo.png" HeightRequest="90"/>
+                <Label Text="DonorCentar" HorizontalOptions="Center" TextColor="Gray"/>
+                <Label Margin="0,10,0,10" Text="Prihvaćene donacije" FontSize="30" HorizontalOptions="Center"/>
+
+
+                <SearchBar Text="{Binding Pretraga}" Margin="0,10,0,10" BackgroundColor="LightGray"  Placeholder="Pretraži grad" HorizontalTextAlignment="Center"/>
+                <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Donacije}"
+                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid x:DataType="model:Donacija" Padding="10">
+                                <Grid.RowDefinitions>
+                                    
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+
+                                    <RowDefinition Height="Auto" />
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="Auto" />
+                                    
+                                
+                                    
+
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout VerticalOptions="Center" Grid.Column="0" Orientation="Horizontal">
+
+                                    <Label Text="Donor : " 
+                            LineBreakMode="NoWrap" 
+                             
+                            FontSize="16" />
+                                    <Label Text="{Binding Donor.Ime}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                   
+                                    <Label Text="{Binding Donor.Prezime}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    <Label Text="-" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    <Label Text="{Binding Donor.Grad.Naziv}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    <Label Text="/" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    <Label Text="{Binding Donor.LicniPodaci.BrojTelefona}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center" Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                                    <Label Text="Primalac : " 
+                            LineBreakMode="NoWrap" 
+                            
+                            FontSize="16" />
+
+                                    <Label Text="{Binding Primalac.Ime}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+
+                                    <Label Text="{Binding Primalac.Prezime}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    <Label Text="-" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+
+                                    <Label Text="{Binding Primalac.Grad.Naziv}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                    
+                                </StackLayout>
+                                
+           
+
+
+            <BoxView Grid.Row="2" Grid.ColumnSpan="2" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+                           </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+        
+        

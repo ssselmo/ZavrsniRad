@@ -1,0 +1,33 @@
+version: '3'
+services:
+#mssql docker
+  donorcentar-sql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - donorcentarnet
+
+  donorcentar-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=donorcentar-sql,1433;Database=170020;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+    ports:
+      - 25001:80
+    networks:
+      - donorcentarnet
+    links:
+      - donorcentar-sql
+    depends_on:
+      - donorcentar-sql
+
+networks:
+  donorcentarnet:
+    driver: bridge

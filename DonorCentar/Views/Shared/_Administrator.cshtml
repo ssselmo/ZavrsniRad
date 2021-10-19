@@ -1,0 +1,158 @@
+﻿@using DonorCentar.Helper;
+
+@{
+    Layout = null;
+//    BazaPodataka db = new BazaPodataka();
+    //int brojObavijesti = db.Obavijest.Where(o => o.TipKorisnikaId == 4).Count();
+    int brojObavijesti = ViewBag.brojObavijesti;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Administrator</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/lux.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="icon" href="~/img/logo.png" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/SignalR/dist/browser/signalr.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</head>
+<body>
+    <div id="main">
+        <div id="left">
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+                <div class="container">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="mb-3">
+                            <img src="~/img/logo.png" alt="" />
+                        </li>
+                        <li>
+                            @if (ViewBag.Active == "Index")
+                            {
+                                <a class="nav-link text-light top-b activee" asp-controller="Administrator" asp-action="Index">Profil</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-light top-b" asp-controller="Administrator" asp-action="Index">Profil</a>
+                            }
+                        </li>
+                        <li>
+                            @if (ViewBag.Active == "Obavijesti")
+                            {
+                                <a class="nav-link text-light activee" asp-controller="Administrator" asp-action="Obavijesti">
+                                    Obavijesti
+                                    <span id="brojObavijestiAdmin" class="badge badge-primary badge-pill">@brojObavijesti</span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-light" asp-controller="Administrator" asp-action="Obavijesti">
+                                    Obavijesti
+                                    <span id="brojObavijestiAdmin" class="badge badge-primary badge-pill">@brojObavijesti</span>
+                                </a>
+                            }
+                        </li>
+                        <li>
+                            @if (ViewBag.Active == "NeverifikovaniPrimaoci")
+                            {
+                                <a class="nav-link text-light activee" asp-controller="Administrator" asp-action="NeverifikovaniPrimaoci">Neverifikovani primaoci</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-light" asp-controller="Administrator" asp-action="NeverifikovaniPrimaoci">Neverifikovani primaoci</a>
+                            }
+                        </li>
+                        <li>
+                            @if (ViewBag.Active == "DodajAdmina")
+                            {
+                                <a class="nav-link text-light activee" asp-controller="Administrator" asp-action="DodajAdmina">Dodaj admina</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-light" asp-controller="Administrator" asp-action="DodajAdmina">Dodaj admina</a>
+                            }
+                        </li>
+                        <li>
+                            @if (ViewBag.Active == "PregledPrimaoca")
+                            {
+                                <a class="nav-link text-light activee" asp-controller="Administrator" asp-action="PregledPrimaoca">Pregled primaoca</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-light" asp-controller="Administrator" asp-action="PregledPrimaoca">Pregled primaoca</a>
+                            }
+                        </li>
+
+                        <li>
+                            @if (ViewBag.Active == "PregledDonora")
+                            {
+                                <a class="nav-link text-light activee" asp-controller="Administrator" asp-action="PregledDonora">Pregled donora</a>
+                            }
+                            else
+                            {
+                                <a class="nav-link text-light" asp-controller="Administrator" asp-action="PregledDonora">Pregled donora</a>
+                            }
+                        </li>
+
+                        <li>
+                            @if (ViewBag.Active == "PregledPartnera")
+                            {
+                            <a class="nav-link text-light activee" asp-controller="Administrator" asp-action="PregledPartnera">Pregled partnera</a>
+                            }
+                            else
+                            {
+                        <a class="nav-link text-light" asp-controller="Administrator" asp-action="PregledPartnera">Pregled partnera</a>
+                            }
+                        </li>
+
+                        <li>
+                            <a class="nav-link btn btn-secondary text-dark mt-5" asp-controller="Home" asp-action="Index">Odjavi se</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+        </div>
+        <div id="right">
+            <div class="container">
+                <main role="main">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+    @RenderSection("Scripts", required: false)
+            <script>
+        function updateNotificationCount(id) {
+            if (id == 8) {
+                var count = parseInt($("#brojObavijestiAdmin").text(), 10);
+                count = count + 1;
+                $("#brojObavijestiAdmin").text(count);
+            }
+        }
+
+        $(function () {
+            var notificationHub = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
+
+            notificationHub.start().then(function () {
+                console.log("Notification hub started");
+            });
+
+            notificationHub.on("ReceiveNotification", function (id) {
+                updateNotificationCount(id);
+            });
+        });
+
+    </script>
+</body>
+</html>

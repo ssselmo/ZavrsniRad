@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:control="clr-namespace:DonorCentar.Mobile.Controls" xmlns:behaviour="clr-namespace:DonorCentar.Mobile.Behaviors" xmlns:converter="clr-namespace:DonorCentar.Mobile.Converters" xmlns:viewModel="clr-namespace:DonorCentar.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="DonorCentar.Mobile.Views.EditPotrebePage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   
+
+
+    <ContentPage.Content>
+        <ScrollView x:DataType="viewModel:EditPotrebeViewModel">
+            <StackLayout Padding="30,20,30,0">
+                <Image Source="logo.png" HeightRequest="90"/>
+                <Label Text="DonorCentar" HorizontalOptions="Center" TextColor="Gray"/>
+                <Label Text="Uredite potrebu" FontSize="30"/>
+
+
+                <Grid Margin="0,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>   
+
+                    <Label  Text="Tip potrebe"  TextColor="DarkOrange"/>
+
+
+                    <combobox:SfComboBox DataSource="{Binding TipoviDonacija}"  SelectedItem="{Binding TipDonacije}"  Margin="0,0,0,30" Grid.Column="1" BorderColor="DarkOrange" TextColor="DarkOrange" >
+                    </combobox:SfComboBox>
+
+
+                   
+                    <Label Grid.Row="2"  Grid.Column="0" Text="Transport"  TextColor="DarkOrange"/>
+
+                    <CheckBox IsChecked="{Binding Transport}" WidthRequest="20" Margin="0,0,0,30"  Color="DarkOrange" HorizontalOptions="Center" Grid.Row="2"  Grid.Column="1"></CheckBox>
+
+                    <Label Grid.Row="3"  Grid.Column="0" Text="Opis potrebe"  TextColor="DarkOrange"/>
+
+                    <control:BorderlessEntry  Grid.Row="4" Grid.ColumnSpan="2"
+                                       
+                                       
+                                        HeightRequest="35"
+                                        
+                                        
+                                        FontSize="15"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding Donacija.Opis}">
+                        
+                    </control:BorderlessEntry>
+                    <BoxView Grid.Row="5" Grid.ColumnSpan="2" Margin="0,-2,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+
+                </Grid>
+
+
+
+                <Button Margin="100,20,100,0" CornerRadius="4" BackgroundColor="DarkOrange" VerticalOptions="Center" Text="Spremi" Command="{Binding EditCommand}"/>
+              
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+        
+        

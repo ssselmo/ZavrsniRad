@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:control="clr-namespace:DonorCentar.Mobile.Controls" xmlns:behaviour="clr-namespace:DonorCentar.Mobile.Behaviors" xmlns:converter="clr-namespace:DonorCentar.Mobile.Converters" xmlns:viewModel="clr-namespace:DonorCentar.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="DonorCentar.Mobile.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:LoginViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="30,20,30,0">
+            <Image Source="logo.png" HeightRequest="90"/>
+            <Label Text="DonorCentar" HorizontalOptions="Center" TextColor="Gray"/>
+            <Label Text="Prijavi se" FontSize="30"/>
+            <Label Text="Zdravo! Lijepo vas je opet vidjeti."  TextColor="Gray"/>
+            <Label Margin="0,20,0,0" Text="Korisnicko ime"  TextColor="DarkOrange"/>
+
+            <Grid ColumnDefinitions="*, Auto">
+
+                <control:BorderlessEntry
+                                       
+                                       
+                                        HeightRequest="35"
+                                       
+                                        Placeholder="KorisnickoIme"
+                                        FontSize="15"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding KorisnickoIme.Value}">
+                    <Entry.Behaviors>
+                        <behaviour:EntryLineValidationBehaviour IsValid="{Binding KorisnickoIme.IsValid}" />
+                    </Entry.Behaviors>
+                </control:BorderlessEntry>
+
+
+            </Grid>
+            <BoxView Margin="0,-2,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+
+
+            <Label Margin="0,10,0,0" Text="Lozinka"  TextColor="DarkOrange"/>
+            
+                <Grid ColumnDefinitions="*, Auto">
+
+                    <control:BorderlessEntry
+                                       
+                                       
+                                        HeightRequest="35"
+                                        IsPassword="True"
+                                        Placeholder="Lozinka"
+                                        FontSize="15"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding Password.Value}">
+                        <Entry.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
+                        </Entry.Behaviors>
+                    </control:BorderlessEntry>
+
+                   
+                </Grid>
+            <BoxView Margin="0,-2,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+
+         
+
+            <Button Margin="0,20,0,0" CornerRadius="4" BackgroundColor="DarkOrange" VerticalOptions="Center" Text="Prijavi se" Command="{Binding LoginCommand}"/>
+          
+            <Label Margin="0,20,0,0" Text="Novi račun" HorizontalTextAlignment="Center" TextColor="DarkOrange">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                </Label.GestureRecognizers>
+
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+        
+        

@@ -1,0 +1,41 @@
+﻿@model DonorCentar.ViewModels.HomeZaboravljenaLozinkaVM
+
+@{
+    ViewData["Title"] = "Zaboravljena lozinka";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+<div id="registracija-form">
+
+    <form asp-action="PosaljiNovuLozinku" asp-controller="Home">
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input id="Email" asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-dark">Pošalji novu lozinku</button>
+    </form>
+
+    <form asp-action="PosaljiNovuLozinkuTel" asp-controller="Home">
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="form-group">
+            <label for="BrojMobitela">Telefonski broj</label>
+            <input id="BrojMobitela" asp-for="BrojMobitela" class="form-control" />
+            <span asp-validation-for="BrojMobitela"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-dark">Pošalji novu lozinku</button>
+    </form>
+</div>

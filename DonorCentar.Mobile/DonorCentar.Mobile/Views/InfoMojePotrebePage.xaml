@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:control="clr-namespace:DonorCentar.Mobile.Controls" xmlns:behaviour="clr-namespace:DonorCentar.Mobile.Behaviors" xmlns:converter="clr-namespace:DonorCentar.Mobile.Converters" xmlns:viewModel="clr-namespace:DonorCentar.Mobile.ViewModels" xmlns:model="clr-namespace:DonorCentar.Model;assembly=DonorCentar.Model"
+             mc:Ignorable="d"
+             x:Class="DonorCentar.Mobile.Views.InfoMojePotrebePage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   
+
+
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <StackLayout Padding="30,20,30,0">
+                <Image Source="logo.png" HeightRequest="90"/>
+                <Label Text="DonorCentar" HorizontalOptions="Center" TextColor="Gray"/>
+                <Label Margin="0,10,0,10" Text="Informacije o potrebi" FontSize="30" HorizontalOptions="Center"/>
+
+                <Grid x:DataType="viewModel:InfoMojePotrebeViewModel" Padding="10">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="80*" />
+                        
+                        <ColumnDefinition Width="Auto" />
+
+                        
+                       
+
+                    </Grid.ColumnDefinitions>
+                    <BoxView Grid.Row="0" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="Orange"/>
+                    <Label  FontSize="17" Text="Donor" Grid.Row="0" Grid.Column="0"/>
+                    <Label  Grid.Row="0"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                          >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17" FontAttributes="Bold" Text="{Binding Donacija.Donor.Ime}"/>
+                                    <Span Text=" "/>
+                                    <Span FontSize="17" FontAttributes="Bold" Text="{Binding Donacija.Donor.Prezime}"/>
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" />
+
+
+                    <Label FontSize="17" Text="Tip potrebe" Grid.Row="1" Grid.Column="0"></Label>
+                    
+                    <Label  Grid.Row="1"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                          >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17" FontAttributes="Bold" Text="{Binding  Donacija.TipDonacije.Tip}"/>
+                                    
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="2" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" />
+                    <Label FontSize="17" Text="Količina" Grid.Row="2" Grid.Column="0"></Label>
+
+                    <Label  Grid.Row="2"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                          >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17" FontAttributes="Bold"  Text="{Binding Donacija.Kolicina}"/>
+                                    <Span Text=" "/>
+                                    <Span FontSize="17" FontAttributes="Bold"  Text="{Binding  Donacija.JedinicaMjere}"/>
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="3" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray"/>
+                    <Label FontSize="17" Text="Opis potrebe" Grid.Row="3" Grid.Column="0"></Label>
+
+                    <Label  Grid.Row="3"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                        >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17"  FontAttributes="Bold" Text="{Binding  Donacija.Opis}"/>
+                                    
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="4" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" />
+                    <Label FontSize="17" Text="Transport" Grid.Row="4" Grid.Column="0"></Label>
+
+                    <Label  Grid.Row="4"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                           >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17" FontAttributes="Bold" Text="{Binding  Donacija.Informacije.Opis}"/>
+
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                
+                </Grid>
+
+
+
+
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+        
+        
