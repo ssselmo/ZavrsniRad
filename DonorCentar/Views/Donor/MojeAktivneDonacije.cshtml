@@ -5,52 +5,47 @@
 
 
 }
+<div class="content-box">
+    <div class="page-box">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Primalac</th>
+                    <th scope="col">Tip donacije</th>
+                    <th scope="col">Status</th>
+                    <th></th>
+                    <th></th>
 
-<table class="table table-dark">
-    <thead>
-        <tr>
-            <th scope="col">Primalac</th>
-            <th scope="col">Tip donacije</th>
-            <th scope="col">Status</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var x in Model.rows)
-        {
-        <tr>
-            <td>@x.LicniPodaciNaziv</td>
-            <td>@x.TipDonacije</td>
-            <td>@x.StatusOpis</td>
-            <td><a class="btn btn-info" asp-route-donacijaId="@x.DonacijaId" asp-route-akcija="1" asp-action="DetaljiDonacije">Detalji</a></td>
-            @if (x.StatusId == 3)
-            {
-                <td><a class="btn btn-success" asp-route-donacijaId="@x.DonacijaId" asp-action="ObezbjediTransport">Obezbjedi transport</a></td>
-                <td><a class="btn btn-danger"  asp-route-donacijaId="@x.DonacijaId" asp-action="OdbijZahtjev">Odbij</a></td>
-            }
-            else if (x.StatusId == 4)
-            {
-                <td><p>Izvršite transport donacije</p></td>
-                <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="PrekiniDonaciju">Prekini donaciju</a></td>
-            }
-            else if (x.StatusId == 6)
-            {
-                <td><a class="btn btn-success" asp-route-donacijaId="@x.DonacijaId" asp-action="PrihvatiZahtjev">Prihvati</a></td>
-                <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="OdbijZahtjev">Odbij</a></td>
-            }
-            else
-            {
-                <td></td>
-                <td></td>
-            }
-        </tr>
-        }
-    </tbody>
-</table>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.rows)
+                {
+                    <tr>
+                        <td>@x.LicniPodaciNaziv</td>
+                        <td>@x.TipDonacije</td>
+                        <td>@x.StatusOpis</td>
+                        <td><a class="btn btn-info" asp-route-donacijaId="@x.DonacijaId" asp-route-akcija="1" asp-action="DetaljiDonacije">Detalji</a></td>
+
+                        <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="PrekiniDonaciju">Prekini donaciju</a></td>
+                        @if (x.InformacijaId == 1)
+                        {
+                            <td><a class="btn btn-success" asp-route-donacijaId="@x.DonacijaId" asp-action="ObezbjediTransport">Obezbjedi transport</a></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
 
 
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
 
 <div class="modal" tabindex="-1" role="dialog" id="Odbijen">
     <div class="modal-dialog" role="document">
@@ -66,7 +61,7 @@
                 <p>Zahtjev je odbijen</p>
             </div>
             <div class="modal-footer">
-                <a asp-action="MojeAktivneDonacije" class="btn btn-primary" >U redu</a>
+                <a asp-action="MojeAktivneDonacije" class="btn btn-primary">U redu</a>
             </div>
         </div>
     </div>

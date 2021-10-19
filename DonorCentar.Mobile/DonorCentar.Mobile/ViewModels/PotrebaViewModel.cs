@@ -79,11 +79,11 @@ namespace DonorCentar.Mobile.ViewModels
             }
 
 
-            Donacija.InformacijeId = transport ? 1 : 4;
+            Donacija.InformacijeId = transport ? 4 : 1;
             Donacija.TipDonacijeId = tipdonacije.TipDonacijeId;
            
             Donacija.VrstaDonacijeId = 2;
-            Donacija.StatusId = 6;
+            Donacija.StatusId = 1;
             Donacija.Kolicina = 1;
             Donacija.JedinicaMjere = 0;
             Donacija.PrimalacId = APIService.Korisnik.Id;

@@ -124,7 +124,7 @@ namespace DonorCentar.WebAPI
             var statusi = new List<Status>
             {new Status
                 {
-                    Opis="Nova"
+                    Opis="Izbrisana"
                 },
                  new Status
                 {
@@ -148,6 +148,7 @@ namespace DonorCentar.WebAPI
                 }
                
             };
+       
             context.Status.AddRange(statusi);
             context.SaveChanges();
 
@@ -494,7 +495,7 @@ var admin = new Administrator
             context.Donacija.Add(donacija);
             context.SaveChanges();
 
-            var donacija2 = new Donacija
+            var donacija2 = new Donacija 
             {
                 Donor = donor.Korisnik,
                 Informacije = informacije.ElementAt(0),
@@ -521,7 +522,7 @@ var admin = new Administrator
                 TipDonacije = tipovidonacija.ElementAt(0),
                 Opis = "Dvije jakne",
                 Primalac = primalac.Korisnik,
-                Status = statusi.ElementAt(4),
+                Status = statusi.ElementAt(5),
                 VrstaDonacije = vrstedonacija.ElementAt(1)
 
 
@@ -539,7 +540,7 @@ var admin = new Administrator
                 TipDonacije = tipovidonacija.ElementAt(2),
                 Opis = "u KM",
                 Primalac = primalac2.Korisnik,
-                Status = statusi.ElementAt(4),
+                Status = statusi.ElementAt(5),
                 VrstaDonacije = vrstedonacija.ElementAt(1)
 
 
@@ -553,7 +554,7 @@ var admin = new Administrator
             {
                 Korisnik=donor.Korisnik,
                 Datum=DateTime.UtcNow,
-                Dojam=dojmovi.ElementAt(0),
+                Dojam=dojmovi.ElementAt(2),
                 Opis="Sve ok!",
                 Donacija=donacija
                 
@@ -566,7 +567,7 @@ var admin = new Administrator
             {
                 Korisnik = donor.Korisnik,
                 Datum = DateTime.UtcNow,
-                Dojam = dojmovi.ElementAt(0),
+                Dojam = dojmovi.ElementAt(2),
                 Opis = "Sve ok!",
                 Donacija = donacija2,
                 

@@ -92,7 +92,7 @@ namespace DonorCentar.Mobile.ViewModels
             }
 
 
-            Donacija.InformacijeId = transport ? 1 : 4;
+            Donacija.InformacijeId = transport ? 4 : 1;
             Donacija.TipDonacijeId = tipdonacije.TipDonacijeId;
            
             Donacija.VrstaDonacijeId = 2;

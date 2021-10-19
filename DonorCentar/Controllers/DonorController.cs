@@ -84,9 +84,6 @@ namespace DonorCentar.Controllers
             DodajDonacijuViewModel vm = new DodajDonacijuViewModel
             {
                 TipDonacije = db.TipDonacije.Select(t => new SelectListItem { Value = t.TipDonacijeId.ToString(), Text = t.Tip }).ToList(),
-                VrstaDonacije = db.VrstaDonacije.Select(t => new SelectListItem { Value = t.VrstaDonacijeId.ToString(), Text = t.Vrsta }).ToList(),
-                Status = db.Status.Select(t => new SelectListItem { Value = t.StatusId.ToString(), Text = t.Opis }).ToList(),
-                Transport = db.Partner.Select(t => new SelectListItem { Value = t.KorisnikId.ToString(), Text = t.Korisnik.LicniPodaci.ImePrezime }).ToList(),
                 Informacije = db.InformacijeTransporta.Select(t => new SelectListItem { Value = t.InformacijeTransportaId.ToString(), Text = t.Opis }).ToList(),
                 Primalac = db.Primalac.Select(t => new SelectListItem { Value = t.KorisnikId.ToString(), Text = t.Korisnik.LicniPodaci.ImePrezime }).ToList()
 
@@ -108,12 +105,12 @@ namespace DonorCentar.Controllers
                 Kolicina = (int)viewModel.Donacija.Kolicina,
                 Opis = viewModel.Donacija.Opis,
                 PrimalacId = viewModel.Donacija.PrimalacId,
-                StatusId = viewModel.Donacija.StatusId,
+                StatusId = 2,
                 TipDonacijeId = viewModel.Donacija.TipDonacijeId,
-                VrstaDonacijeId = viewModel.Donacija.VrstaDonacijeId,
-                InformacijeId = viewModel.Donacija.InformacijeId,
-                TransportId = viewModel.Donacija.TransportId,
-                DonorId = k.Id
+                VrstaDonacijeId = 1,
+                InformacijeId = viewModel.Transport ? 4 : 1,
+                DonorId = k.Id,
+               
 
             };
 
@@ -135,7 +132,7 @@ namespace DonorCentar.Controllers
 
             DonorPregledPotrebaVM model = new DonorPregledPotrebaVM
             {
-                rows = db.Donacija.Where(d => d.StatusId == 2).Select(d => new DonorPregledPotrebaVM.Row
+                rows = db.Donacija.Where(d => d.VrstaDonacijeId==2 && d.StatusId==1 ).Select(d => new DonorPregledPotrebaVM.Row
                 {
                     DonacijaId = d.DonacijaId,
                     LicniPodaciNaziv = d.Primalac.LicniPodaci.ImePrezime,
@@ -239,7 +236,7 @@ namespace DonorCentar.Controllers
 
             d.PrimalacId = null;
             d.TransportId = null;
-            d.StatusId = 1;
+            d.StatusId = 6;
             db.SaveChanges();
 
           
@@ -258,7 +255,7 @@ namespace DonorCentar.Controllers
 
             d.PrimalacId = null;
             d.TransportId = null;
-            d.StatusId = 1;
+            d.StatusId = 6;
             db.SaveChanges();
 
 
@@ -272,12 +269,12 @@ namespace DonorCentar.Controllers
 
             var model = new DonorMojeAktivneDonacijeVM
             {
-                rows = db.Donacija.Where(d => d.StatusId != 2 && d.StatusId != 5).Where(d => d.DonorId == k.Id).Select(d => new DonorMojeAktivneDonacijeVM.Row
+                rows = db.Donacija.Where(d => d.DonorId == k.Id && d.StatusId!=6).Select(d => new DonorMojeAktivneDonacijeVM.Row
                 {
                     DonacijaId = d.DonacijaId,
                     StatusOpis = d.Status.Opis,
                     TipDonacije = d.TipDonacije.Tip,
-                    StatusId = d.StatusId,
+                    InformacijaId = d.InformacijeId,
                     PrimalacId = (int)d.PrimalacId
                 }).ToList()
             };
@@ -309,7 +306,7 @@ namespace DonorCentar.Controllers
             Donacija d = db.Donacija.Find(donacijaId);
 
             d.TransportId = k.Id;
-            d.StatusId = 4;
+            d.StatusId = 2;
 
          
 
@@ -338,7 +335,7 @@ namespace DonorCentar.Controllers
             
 
             Donacija d = db.Donacija.Find(donacijaId);
-            d.StatusId = 3;
+            d.StatusId = 2;
 
           
             db.SaveChanges();
@@ -354,7 +351,7 @@ namespace DonorCentar.Controllers
             Korisnik k = HttpContext.GetLogiraniKorisnik();
             
             Donacija d = db.Donacija.Find(donacijaId);
-            d.StatusId = 3;
+            d.StatusId = 2;
             d.DonorId = k.Id;
 
           

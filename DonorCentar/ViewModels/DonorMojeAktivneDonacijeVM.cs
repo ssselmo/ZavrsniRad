@@ -14,8 +14,9 @@ namespace DonorCentar.ViewModels
             public string LicniPodaciNaziv { get; set; }
             public string TipDonacije { get; set; }
             public string StatusOpis { get; set; }
-            public int StatusId { get; set; }
+            public int? InformacijaId { get; set; }
             public int PrimalacId { get; set; }
+            public int StatusId { get; set; }
         }
     }
 }

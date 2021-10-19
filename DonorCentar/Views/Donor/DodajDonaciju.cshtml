@@ -26,36 +26,10 @@
             <span asp-validation-for="Donacija.PrimalacId"></span>
         </div>
 
-        
-        <div class="form-group">
-            <label for="Transport">Transport</label>
-            <select id="Primalac" asp-for="Donacija.TransportId" asp-items="Model.Transport" class="form-control">
-                <option value="">Izaberite transport</option>
-            </select>
-            <span asp-validation-for="Donacija.TransportId"></span>
-        </div>
-        <div class="form-group">
-            <label for="VrstaDonacije">Vrsta donacije</label>
-            <select id="VrstaDonacije" asp-for="Donacija.VrstaDonacijeId" asp-items="Model.VrstaDonacije" class="form-control">
-                <option value="">Izaberite vrstu donacije</option>
-            </select>
-            <span asp-validation-for="Donacija.VrstaDonacijeId"></span>
-        </div>
 
         <div class="form-group">
-            <label for="Status">Status</label>
-            <select id="Status" asp-for="Donacija.StatusId" asp-items="Model.Status" class="form-control">
-                <option value="">Izaberite status</option>
-            </select>
-            <span asp-validation-for="Donacija.StatusId"></span>
-        </div>
-
-        <div class="form-group">
-            <label for="Informacije">Informacije</label>
-            <select id="Informacije" asp-for="Donacija.InformacijeId" asp-items="Model.Informacije" class="form-control">
-                <option value="">Izaberite informacije</option>
-            </select>
-            <span asp-validation-for="Donacija.InformacijeId"></span>
+            <label for="Informacije">Transport</label>
+            <input asp-for="Transport" />
         </div>
         <div class="form-group">
             <label for="Opis">Opis</label>

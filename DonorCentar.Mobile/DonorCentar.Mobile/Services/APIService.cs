@@ -16,7 +16,7 @@ namespace DonorCentar.Mobile
 
         private readonly string _route;
 
-        public static string ApiUrl = "http://localhost:25001";
+        public static string ApiUrl = "http://localhost:56769";
 
 
 

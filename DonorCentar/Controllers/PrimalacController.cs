@@ -164,7 +164,7 @@ namespace DonorCentar.Controllers
                 Kolicina = (int)viewModel.Kolicina,
                 Opis = viewModel.Opis,
                 PrimalacId = k.Id,
-                StatusId = 2,
+                StatusId = 1,
                 TipDonacijeId = viewModel.TipDonacijeId,
                 VrstaDonacijeId = 2
             };
@@ -204,7 +204,7 @@ namespace DonorCentar.Controllers
             Korisnik k = HttpContext.GetLogiraniKorisnik();
             
 
-            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 1)
+            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 5)
                 .Where(s => s.VrstaDonacijeId == 1).Include(s => s.Status).Include(s => s.TipDonacije).
                 Include(s => s.Donor.LicniPodaci).ToList();
 
@@ -217,7 +217,7 @@ namespace DonorCentar.Controllers
             Korisnik k = HttpContext.GetLogiraniKorisnik();
            
 
-            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 6 || s.StatusId == 4 || s.StatusId == 3)
+            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 1)
             .Where(s => s.PrimalacId == k.Id)
             .Include(s => s.Status).Include(s => s.TipDonacije)
             .Include(s => s.Donor)
@@ -265,7 +265,7 @@ namespace DonorCentar.Controllers
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
             
-            db.Donacija.Find(donacijaId).StatusId = 6;
+            db.Donacija.Find(donacijaId).StatusId = 1;
             db.Donacija.Find(donacijaId).PrimalacId = k.Id;
             db.SaveChanges();
 
@@ -279,7 +279,7 @@ namespace DonorCentar.Controllers
 
             ViewBag.Prikazi = "Zatrazeno";
 
-            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 6 || s.StatusId == 4 || s.StatusId == 3)
+            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 5)
             .Where(s => s.VrstaDonacijeId == 1).Include(s => s.Status).Include(s => s.TipDonacije)
             .Include(s => s.Donor.LicniPodaci).ToList();
 
@@ -311,12 +311,12 @@ namespace DonorCentar.Controllers
 
             Donacija d = db.Donacija.Find(donacijaId);
 
-            d.StatusId = 1;
+            d.StatusId = 6;
             d.PrimalacId = null;
 
             db.SaveChanges();
 
-            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 6 || s.StatusId == 4 || s.StatusId == 3)
+            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 1)
             .Where(s => s.VrstaDonacijeId == 1).Include(s => s.Status).Include(s => s.TipDonacije)
             .Include(s => s.Donor.LicniPodaci).ToList();
 
@@ -334,14 +334,14 @@ namespace DonorCentar.Controllers
             Donacija d = db.Donacija.Find(donacijaId);
 
             d.TransportId = k.Id;
-            d.StatusId = 4;
+            d.StatusId = 2;
 
          
 
             db.SaveChanges();
 
 
-            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 6 || s.StatusId == 4 || s.StatusId == 3)
+            IEnumerable<Donacija> donacija = db.Donacija.Where(s => s.StatusId == 1)
                 .Where(s => s.VrstaDonacijeId == 1).Include(s => s.Status).Include(s => s.TipDonacije)
                 .Include(s => s.Donor.LicniPodaci).ToList();
 
@@ -357,7 +357,7 @@ namespace DonorCentar.Controllers
             
 
             Donacija d = db.Donacija.Find(donacijaId);
-            d.StatusId = 5;
+            d.StatusId = 2;
             db.SaveChanges();
 
             PrimalacDonacijaJeStiglaVM model = new PrimalacDonacijaJeStiglaVM
