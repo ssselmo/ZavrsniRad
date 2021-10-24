@@ -61,10 +61,31 @@ namespace DonorCentar.Controllers
         public ActionResult Obavijesti()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
+            ObavijestiVM model = new ObavijestiVM
+            {
+                rows = db.Obavijest.Select(o => new ObavijestiVM.Row
+                {
+
+                    Vrijeme = o.Vrijeme,
+                    Naslov = o.Naslov,
+                    ObavijestId = o.ObavijestId,
+                    Sadrzaj = o.Sadrzaj
+
+                }).ToList()
+            };
 
             this.PostaviViewBag("Obavijesti");
-            return View();
+            return View(model);
+            
+        }
+        public ActionResult IzbrisiObavijest(int obavijestId)
+        {
+            Obavijest o = db.Obavijest.Find(obavijestId);
+            db.Obavijest.Remove(o);
+            db.SaveChanges();
+
+            return RedirectToAction("Obavijesti");
         }
         public ActionResult DonacijeBezTransporta()
         {
