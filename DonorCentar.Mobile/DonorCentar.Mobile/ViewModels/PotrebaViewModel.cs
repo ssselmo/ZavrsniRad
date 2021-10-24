@@ -49,13 +49,28 @@ namespace DonorCentar.Mobile.ViewModels
             set { SetProperty(ref donacija, value); }
         }
 
-     
 
+        private string kolicina;
+
+        public string Kolicina
+        {
+            get { return kolicina; }
+            set { SetProperty(ref kolicina, value); }
+        }
+
+        private Models.JedinicaMjere jedinicamjere;
+
+        public Models.JedinicaMjere JedinicaMjere
+        {
+            get { return jedinicamjere; }
+            set { SetProperty(ref jedinicamjere, value); }
+        }
 
 
 
         public ObservableCollection<TipDonacije> TipoviDonacija { get; set; } = new ObservableCollection<TipDonacije>();
-        
+        public ObservableCollection<Models.JedinicaMjere> JediniceMjere { get; set; } = new ObservableCollection<Models.JedinicaMjere>();
+
 
         public ICommand ZatraziCommand { get; }
         public ICommand UcitajCommand { get; }
@@ -77,15 +92,27 @@ namespace DonorCentar.Mobile.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Greška", "Potrebno unijeti opis!", "OK");
                 return;
             }
+            if (jedinicamjere == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Greška", "Potrebno unijeti jedinicu mjere!", "OK");
+                return;
 
+            }
+            if (kolicina == null || !decimal.TryParse(kolicina, out decimal val) || val < 1)
+            {
+                await Application.Current.MainPage.DisplayAlert("Greška", "Potrebno unijeti količinu!", "OK");
+                return;
+
+            }
 
             Donacija.InformacijeId = transport ? 4 : 1;
             Donacija.TipDonacijeId = tipdonacije.TipDonacijeId;
-           
+
+            Donacija.Kolicina = decimal.Parse(kolicina);
+
             Donacija.VrstaDonacijeId = 2;
             Donacija.StatusId = 1;
-            Donacija.Kolicina = 1;
-            Donacija.JedinicaMjere = 0;
+            Donacija.JedinicaMjere = jedinicamjere.jedinicaMjere;
             Donacija.PrimalacId = APIService.Korisnik.Id;
 
            
@@ -98,9 +125,10 @@ namespace DonorCentar.Mobile.ViewModels
             if (entity != null)
             {
                 Donacija = new DonacijaInsertRequest();
-               
-                
-              
+
+                JedinicaMjere = null;
+
+
                 TipDonacije = null;
                
                 Transport = false;
@@ -115,8 +143,9 @@ namespace DonorCentar.Mobile.ViewModels
         public async Task Init()
         {
             await UcitajTipove();
+            UcitajJediniceMjere();
 
-            
+
 
 
         }
@@ -144,7 +173,21 @@ namespace DonorCentar.Mobile.ViewModels
 
         }
 
-        
+        private void UcitajJediniceMjere()
+        {
+            var list = Enum.GetValues(typeof(JedinicaMjere));
+
+            JediniceMjere.Clear();
+            foreach (JedinicaMjere item in list)
+            {
+
+                JediniceMjere.Add(new Models.JedinicaMjere { jedinicaMjere = item });
+            }
+
+
+        }
+
+
 
     }
 }

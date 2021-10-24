@@ -96,6 +96,7 @@ namespace DonorCentar.Controllers
             var viewModel = new DodajDonacijuPotrebuViewModel
             {
                 TipDonacije = db.TipDonacije.Select(t => new SelectListItem { Value = t.TipDonacijeId.ToString(), Text = t.Tip }).ToList(),
+               
             };
 
             this.PostaviViewBag("DodajPotrebu");
@@ -166,7 +167,8 @@ namespace DonorCentar.Controllers
                 PrimalacId = k.Id,
                 StatusId = 1,
                 TipDonacijeId = viewModel.TipDonacijeId,
-                VrstaDonacijeId = 2
+                VrstaDonacijeId = 2,
+                InformacijeId = viewModel.Transport ? 4 : 1
             };
 
             if (viewModel.DonacijaId == 0)

@@ -41,9 +41,7 @@
                         <td>@x.Status.Opis</td>
                         <td><a class="btn btn-info" asp-action="DetaljiDonacije" asp-controller="Primalac" asp-route-donacijaId="@x.DonacijaId"
                                asp-route-akcija="2">Detalji donacije</a></td>
-                        <td>
-                            <a class="btn btn-success" asp-action="ZatraziDonaciju" asp-route-donacijaId="@x.DonacijaId">Zatraži donaciju</a>
-                        </td>
+                        
                     </tr>
                 }
             </tbody>

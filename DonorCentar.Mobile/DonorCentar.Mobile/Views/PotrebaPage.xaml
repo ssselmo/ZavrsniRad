@@ -32,6 +32,12 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+
+
 
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -51,6 +57,8 @@
 
                     <CheckBox IsChecked="{Binding Transport}" WidthRequest="20" Margin="0,0,0,30"  Color="DarkOrange" HorizontalOptions="Center" Grid.Row="2"  Grid.Column="1"></CheckBox>
 
+                    
+
                     <Label Grid.Row="3"  Grid.Column="0" Text="Opis potrebe"  TextColor="DarkOrange"/>
 
                     <control:BorderlessEntry  Grid.Row="4" Grid.ColumnSpan="2"
@@ -66,12 +74,28 @@
                     </control:BorderlessEntry>
                     <BoxView Grid.Row="5" Grid.ColumnSpan="2" Margin="0,-2,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
 
+                
+
+                <Label Grid.Row="6"  Grid.Column="0" Text="Kolicina"  TextColor="DarkOrange"/>
+
+                <control:BorderlessEntry Grid.Column="0"  Grid.Row="7" 
+                                       
+                                       
+                                        HeightRequest="35"
+                                        
+                                        
+                                        FontSize="15"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding Kolicina}">
+
+                </control:BorderlessEntry>
+                <BoxView Grid.Row="8" Margin="0,-2,0,10" Grid.ColumnSpan="1"  HeightRequest="1"  BackgroundColor="LightGray" CornerRadius="10"/>
+                <Label Grid.Row="6" Margin="30,0,0,0" Grid.Column="1" Text="Jedinica mjere"  TextColor="DarkOrange"/>
+                <combobox:SfComboBox DataSource="{Binding JediniceMjere}"  SelectedItem="{Binding JedinicaMjere}" Margin="30,0,0,0" Grid.Row="7" Grid.Column="1" BorderColor="DarkOrange" TextColor="DarkOrange" >
+                </combobox:SfComboBox>
                 </Grid>
-
-
-
                 <Button Margin="100,20,100,0" CornerRadius="4" BackgroundColor="DarkOrange" VerticalOptions="Center" Text="Spremi" Command="{Binding ZatraziCommand}"/>
-              
+
                 
             </StackLayout>
         </ScrollView>
