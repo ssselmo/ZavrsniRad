@@ -1,8 +1,33 @@
-﻿
+﻿@model PartnerHistorijaDonacijaVM
 @{
-    ViewData["Title"] = "HistorijaDonacija";
+    ViewData["Title"] = "PrihvaćeneDonacije";
     Layout = "~/Views/Shared/_Partner.cshtml";
 }
 
-<h1>HistorijaDonacija</h1>
 
+<div class="content-box">
+    <div class="page-box">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Donor</th>
+                    <th scope="col">Primalac</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.rows)
+                {
+                    <tr>
+                        <td>@x.Donor</td>
+                        <td>@x.Primalac</td>
+                        
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

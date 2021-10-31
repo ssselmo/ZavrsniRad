@@ -6,6 +6,7 @@ using DonorCentar.Helper;
 using DonorCentar.Hubs;
 using DonorCentar.Models;
 using DonorCentar.ViewModels;
+using DonorCentar.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -90,18 +91,52 @@ namespace DonorCentar.Controllers
         public ActionResult DonacijeBezTransporta()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-           
+
+            PartnerDonacijeBezTransportaVM vm = new PartnerDonacijeBezTransportaVM
+            {
+                rows = db.Donacija.Where(x => x.TransportId == null && x.VrstaDonacijeId==1).Include(x=> x.Donor.Grad).Include(x => x.Primalac.Grad).Select(x => new PartnerDonacijeBezTransportaVM.Row
+                {
+                    DonacijaId = x.DonacijaId,
+                    GradDonora = x.Donor.Grad.Naziv,
+                    GradPrimaoca = x.Primalac.Grad.Naziv,
+                    TipDonacije = x.TipDonacije.Tip
+                }).ToList()
+            };
 
             this.PostaviViewBag("DonacijeBezTransporta");
-            return View();
+            return View(vm);
         }
+        public ActionResult ObezbijediTransport(int donacijaId)
+        {
+            Korisnik k = HttpContext.GetLogiraniKorisnik();
+
+            Donacija d = db.Donacija.Find(donacijaId);
+            d.StatusId = 2;
+            d.TransportId = k.Id;
+
+
+            db.SaveChanges();
+
+            return RedirectToAction("HistorijaDonacija");
+
+        }
+
         public ActionResult HistorijaDonacija()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
+            PartnerHistorijaDonacijaVM vm = new PartnerHistorijaDonacijaVM
+            {
+                rows = db.Donacija.Where(x => x.TransportId == k.Id).Include(x => x.Donor.Grad).Include(x => x.Primalac.Grad).Include(x => x.Donor.LicniPodaci).Include(x => x.Primalac.LicniPodaci).Select(x=>new PartnerHistorijaDonacijaVM.Row
+                {
+                    Donor=x.Donor.LicniPodaci.ImePrezime+ " "+ x.Donor.Grad.Naziv+ " / " + x.Donor.LicniPodaci.BrojTelefona,
+                    Primalac=x.Primalac.LicniPodaci.ImePrezime + " " + x.Primalac.Grad.Naziv + " / " + x.Primalac.LicniPodaci.BrojTelefona
+
+                }).ToList()
+            };
 
             this.PostaviViewBag("HistorijaDonacija");
-            return View();
+            return View(vm);
         }
 
 

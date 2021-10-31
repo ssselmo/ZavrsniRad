@@ -1,8 +1,43 @@
-﻿
+﻿@model PartnerDonacijeBezTransportaVM
 @{
     ViewData["Title"] = "DonacijeBezTransporta";
     Layout = "~/Views/Shared/_Partner.cshtml";
 }
 
-<h1>DonacijeBezTransporta</h1>
+<h1>Donacije bez transporta</h1>
+
+<div class="content-box">
+    <div class="page-box">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+
+                    <th scope="col">Tip donacije</th>
+                    <th scope="col">Grad donora</th>
+                    <th scope="col">Grad primaoca</th>
+                    <th scope="col">Obezbijedi transport</th>
+                    <th></th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var x in Model.rows)
+                {
+                    <tr>
+                        <td>@x.TipDonacije</td>
+                        <td>@x.GradDonora</td>
+                        <td>@x.GradPrimaoca</td>
+                       
+                        <td><a class="btn btn-success" asp-route-donacijaId="@x.DonacijaId" asp-action="ObezbijediTransport">Prihvati</a></td>
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
 
