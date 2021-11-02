@@ -90,8 +90,11 @@
     <FlyoutItem Title="Partneri" >
         <ShellContent Route="PartneriPage" ContentTemplate="{DataTemplate local:PartneriPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Dodaj novu obavijest" >
+        <ShellContent Route="DodajObavijestPage" ContentTemplate="{DataTemplate local:DodajObavijestPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Obavijesti">
-        <ShellContent Route="ObavijestiPage" ContentTemplate="{DataTemplate local:ObavijestiPage}" />
+        <ShellContent Route="AdminObavijestiPage" ContentTemplate="{DataTemplate local:AdminObavijestiPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Moj profil">
         <ShellContent Route="MojProfilPage" ContentTemplate="{DataTemplate local:MojProfilPage}" />
