@@ -43,6 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AppShellAdmin.xaml.cs">
+      <DependentUpon>AppShellAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Update="AppShellPrimalac.xaml.cs">
       <DependentUpon>AppShellPrimalac.xaml</DependentUpon>
     </Compile>
@@ -54,6 +57,9 @@
     </Compile>
     <Compile Update="Views\DonacijeSaTransportomPage.xaml.cs">
       <DependentUpon>DonacijeSaTransportomPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DonoriPage.xaml.cs">
+      <DependentUpon>DonoriPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\PreporukaPage.xaml.cs">
       <DependentUpon>PreporukaPage.xaml</DependentUpon>

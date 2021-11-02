@@ -79,8 +79,10 @@ namespace DonorCentar.Mobile.ViewModels
 
                     if (APIService.Korisnik.Tip=="Administrator")
                     {
-                        await Application.Current.MainPage.DisplayAlert("Greška", "Niste autorizovani", "OK");
-                    }
+
+                    //await Application.Current.MainPage.DisplayAlert("Greška", "Niste autorizovani", "OK");
+                    Application.Current.MainPage = new AppShellAdmin();
+                }
                     else
                 {
                     if(APIService.Korisnik.Tip=="Donor")

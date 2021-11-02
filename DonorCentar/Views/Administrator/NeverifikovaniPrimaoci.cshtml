@@ -23,7 +23,7 @@
                 @foreach (var x in Model)
                 {
                     <tr>
-                        <td>@x.LicniPodaci.Naziv</td>
+                        <td>@x.LicniPodaci.ImePrezime</td>
                         <td>@x.LicniPodaci.Email</td>
                         <td>@x.LicniPodaci.BrojTelefona</td>
                         <td>@x.LicniPodaci.Adresa, @x.Grad.Naziv</td>
@@ -52,7 +52,7 @@
             $.each(data, function (key, val) {
                 console.log(val);
                 items.push(`<tr>
-                    <td>${val.naziv}</td>
+                    <td>${val.ime} ${val.prezime}</td>
                     <td>${val.email}</td>
                     <td>${val.brojTelefona}</td>
                     <td>${val.adresa}, ${val.grad}</td>

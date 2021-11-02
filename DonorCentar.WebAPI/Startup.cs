@@ -84,8 +84,10 @@ namespace DonorCentar.WebAPI
             services.AddScoped<IDonacijaService, DonacijaService>();
 
             services.AddScoped<IPartnerService, PartnerService>();
+            services.AddScoped<IDonorService, DonorService>();
 
-            
+
+
             services.AddScoped<ITipDonacijeService, TipDonacijeService>();
             services.AddScoped<IDojamService, DojamService>();
 
