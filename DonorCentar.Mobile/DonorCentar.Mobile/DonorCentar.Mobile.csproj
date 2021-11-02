@@ -67,6 +67,9 @@
     <Compile Update="Views\AdminObavijestiPage.xaml.cs">
       <DependentUpon>AdminObavijestiPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\EditObavijestPage.xaml.cs">
+      <DependentUpon>EditObavijestPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PreporukaPage.xaml.cs">
       <DependentUpon>PreporukaPage.xaml</DependentUpon>
     </Compile>

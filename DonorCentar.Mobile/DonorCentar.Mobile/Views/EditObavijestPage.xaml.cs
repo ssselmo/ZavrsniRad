@@ -10,22 +10,21 @@ using Xamarin.Forms.Xaml;
 namespace DonorCentar.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdminObavijestiPage : ContentPage
+    public partial class EditObavijestPage : ContentPage
     {
+        private EditObavijestViewModel model;
 
-        private AdminObavijestiViewModel model;
-
-        public AdminObavijestiPage()
+        public EditObavijestPage()
         {
 
             InitializeComponent();
-            this.BindingContext=model = new AdminObavijestiViewModel();
+            this.BindingContext =model= new EditObavijestViewModel();
             
         }
+       
 
-        protected async override void OnAppearing()
-        {
-            await model.Init();
-        }
+
     }
 }
+
+

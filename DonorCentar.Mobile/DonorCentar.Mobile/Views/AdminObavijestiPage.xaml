@@ -37,15 +37,17 @@
 
                             <Grid x:DataType="model:Obavijest" Padding="10">
                                 <Grid.RowDefinitions>
-                                    
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto"/>
+
+                                    <RowDefinition Height="70" />
+                                    <RowDefinition Height="70" />
+
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
 
+                                    <ColumnDefinition Width="5*" />
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                   
+
+
 
                                 </Grid.ColumnDefinitions>
 
@@ -60,20 +62,25 @@
                                             <FormattedString>
                                                 <FormattedString.Spans>
                                                     <Span FontAttributes="Bold" FontSize="17" Text="{Binding Naslov}"/>
-                                                    <Span FontAttributes="Bold" FontSize="16" Text=" - "/>
-                                                    <Span Text="{Binding Vrijeme, StringFormat='{0:MMMM dd, yyyy}'}"/>
                                                     
                                                     
                                                 </FormattedString.Spans>
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
+                                  
+
+                                </StackLayout >
+                                <Label Grid.Row="1" Text="{Binding Vrijeme, StringFormat='{0:MMMM dd, yyyy}'}"/>
+
+                                <StackLayout Grid.Column="6" >
+
+                                <ImageButton   Source="infologo.png"  HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:AdminObavijestiViewModel}}, Path=InfoCommand}" CommandParameter="{Binding .}"/>
+                                <ImageButton Source="edit.png" HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:AdminObavijestiViewModel}}, Path=EditCommand}" CommandParameter="{Binding .}"/>
+                                    <ImageButton  Source="kanta.jpg"  HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:AdminObavijestiViewModel}}, Path=UkloniCommand}" CommandParameter="{Binding .}"/>
 
                                 </StackLayout>
-
-                                <ImageButton HorizontalOptions="End" Grid.Column="2" Source="infologo.png"  HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:ObavijestiViewModel}}, Path=InfoCommand}" CommandParameter="{Binding .}"/>
-
-                                <BoxView Grid.Row="1" Grid.ColumnSpan="3" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+                                <BoxView Grid.Row="2" Grid.ColumnSpan="7" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
