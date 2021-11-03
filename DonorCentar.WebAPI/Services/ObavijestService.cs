@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DonorCentar.Model.Requests;
 using DonorCentar.WebAPI.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,13 @@ namespace DonorCentar.WebAPI.Services
 
             return result;
         }
+        public override Model.Obavijest GetById(int id)
+        {
+            var query = Context.Obavijest.Where(x=>x.ObavijestId==id).Include(x=>x.Admin.Korisnik.LicniPodaci).FirstOrDefault();
 
+            var result = _mapper.Map<Model.Obavijest>(query);
+            return result;
+        }
 
     }
 }

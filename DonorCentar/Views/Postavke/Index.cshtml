@@ -3,10 +3,10 @@
     ViewData["Title"] = "Postavke";
     var Korisnik = Context.GetLogiraniKorisnik();
     switch (Korisnik.TipKorisnikaId) {
-        case 1: Layout = "~/Views/Shared/_Donor.cshtml"; break;
-        case 2: Layout = "~/Views/Shared/_Primalac.cshtml"; break;
-        case 3: Layout = "~/Views/Shared/_Partner.cshtml"; break;
-        case 4: Layout = "~/Views/Shared/_Administrator.cshtml"; break;
+        case 4: Layout = "~/Views/Shared/_Donor.cshtml"; break;
+        case 3: Layout = "~/Views/Shared/_Primalac.cshtml"; break;
+        case 2: Layout = "~/Views/Shared/_Partner.cshtml"; break;
+        case 1: Layout = "~/Views/Shared/_Administrator.cshtml"; break;
     }
 
     }

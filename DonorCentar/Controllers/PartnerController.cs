@@ -67,7 +67,7 @@ namespace DonorCentar.Controllers
             {
                 rows = db.Obavijest.Select(o => new ObavijestiVM.Row
                 {
-
+                    AdminId=o.AdminId,
                     Vrijeme = o.Vrijeme,
                     Naslov = o.Naslov,
                     ObavijestId = o.ObavijestId,
@@ -80,14 +80,14 @@ namespace DonorCentar.Controllers
             return View(model);
             
         }
-        public ActionResult IzbrisiObavijest(int obavijestId)
-        {
-            Obavijest o = db.Obavijest.Find(obavijestId);
-            db.Obavijest.Remove(o);
-            db.SaveChanges();
+        //public ActionResult IzbrisiObavijest(int obavijestId)
+        //{
+        //    Obavijest o = db.Obavijest.Find(obavijestId);
+        //    db.Obavijest.Remove(o);
+        //    db.SaveChanges();
 
-            return RedirectToAction("Obavijesti");
-        }
+        //    return RedirectToAction("Obavijesti");
+        //}
         public ActionResult DonacijeBezTransporta()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();

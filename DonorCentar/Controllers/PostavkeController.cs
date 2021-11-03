@@ -113,8 +113,12 @@ namespace DonorCentar.Controllers
                 
                 if (k1 != null)
                 {
-                    
-                    k1.LicniPodaci.ProfilnaSlika = System.IO.File.ReadAllBytes(vm.UploadSlika.FileName);
+                    using (var ms = new MemoryStream())
+                    {
+                        vm.UploadSlika.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        k1.LicniPodaci.ProfilnaSlika = fileBytes;
+                    }
                     db.SaveChanges();
                 }
 
@@ -124,14 +128,7 @@ namespace DonorCentar.Controllers
 
             return RedirectToAction("Index");
         }
-        private string GetUniqueFileName(string fileName)
-        {
-            fileName = Path.GetFileName(fileName);
-            return Path.GetFileNameWithoutExtension(fileName)
-                      + "_"
-                      + Guid.NewGuid().ToString().Substring(0, 4)
-                      + Path.GetExtension(fileName);
-        }
+       
 
     }
 }

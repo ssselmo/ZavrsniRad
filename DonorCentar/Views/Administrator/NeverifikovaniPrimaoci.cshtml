@@ -57,7 +57,7 @@
                     <td>${val.brojTelefona}</td>
                     <td>${val.adresa}, ${val.grad}</td>
                     <td><a class="btn btn-success" href="/Administrator/Verifikuj?korisnikId=${val.korisnikId}">Verifikuj</a>
-                    <a class="btn btn-success" href="/Documents/${val.dokumentVerifikacije}">Prikaži dokument</a></td></tr>`)
+                    <a class="btn btn-success" href="/Administrator/Documents/${val.korisnikId}">Prikaži dokument</a></td></tr>`)
             });
                 $("<tbody>", { html: items.join("") }).appendTo("#table");
 

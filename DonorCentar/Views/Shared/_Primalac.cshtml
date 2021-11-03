@@ -92,17 +92,7 @@
                                 <a class=@(verifikovan == false ? "disabled nav-link text-light" : "nav-link text-light") asp-controller="Primalac" asp-action="MojePotrebe">Moje potrebe</a>
                             }
                         </li>
-                        <li>
-                            @if (ViewBag.Active == "PregledDonacija")
-                            {
-                                <a class=@(verifikovan == false ? "disabled nav-link text-light activee" : "nav-link text-light activee") asp-controller="Primalac" asp-action="PregledDonacija">Pregled donacija</a>
-                            }
-                            else
-                            {
-                                <a class=@(verifikovan == false ? "disabled nav-link text-light" : "nav-link text-light") asp-controller="Primalac" asp-action="PregledDonacija">Pregled donacija</a>
-                            }
-                        </li>
-                        
+                     
                       
                         
                         <li>

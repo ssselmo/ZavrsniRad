@@ -75,6 +75,7 @@ namespace DonorCentar.Controllers
             {
                 rows = db.Obavijest.Select(o => new ObavijestiVM.Row
                 {
+                    AdminId=o.AdminId,
                     Naslov=o.Naslov,
                     Sadrzaj= o.Sadrzaj,
                     ObavijestId = o.ObavijestId,
@@ -124,14 +125,14 @@ namespace DonorCentar.Controllers
             return View("DodajPotrebu", viewModel);
         }
 
-        public ActionResult IzbrisiObavijest(int obavijestId)
-        {
-            Obavijest o = db.Obavijest.Find(obavijestId);
-            db.Obavijest.Remove(o);
-            db.SaveChanges();
+        //public ActionResult IzbrisiObavijest(int obavijestId)
+        //{
+        //    Obavijest o = db.Obavijest.Find(obavijestId);
+        //    db.Obavijest.Remove(o);
+        //    db.SaveChanges();
 
-            return RedirectToAction("Obavijesti");
-        }
+        //    return RedirectToAction("Obavijesti");
+        //}
 
         public ActionResult IzbrisiPotrebu(int donacijaId, int? page2)
         {
@@ -449,6 +450,12 @@ namespace DonorCentar.Controllers
             this.PostaviViewBag("UploadDokument");
             return View(vm);
         }
+        public IActionResult Documents(int Id)
+        {
+            var primalac = db.Primalac.FirstOrDefault(x => x.KorisnikId == Id);
+            return File(primalac.DokumentVerifikacije, "image/jpeg");
+
+        }
 
         [HttpPost]
         public  IActionResult UploadDokument(PrimalacUploadDokumentVM vm)
@@ -461,9 +468,14 @@ namespace DonorCentar.Controllers
                 var primalac = db.Primalac.FirstOrDefault(x => x.KorisnikId == k.Id);
                 if(primalac!=null)
                 {
-                    var uniqueFileName = System.IO.File.ReadAllBytes(vm.UploadDokument.FileName);
+                    using (var ms = new MemoryStream())
+                    {
+                        vm.UploadDokument.CopyTo(ms);
+                        var fileBytes = ms.ToArray();
+                        primalac.DokumentVerifikacije = fileBytes;
+                    }
                     
-                    primalac.DokumentVerifikacije = uniqueFileName;
+                   
                     db.SaveChanges();
                 }
 

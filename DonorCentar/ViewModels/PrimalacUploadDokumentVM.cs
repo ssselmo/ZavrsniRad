@@ -9,6 +9,6 @@ namespace DonorCentar.ViewModels
     public class PrimalacUploadDokumentVM
     {
         public IFormFile UploadDokument { get; set; }
-        public object dokument { get; internal set; }
+        public byte[] dokument { get; internal set; }
     }
 }

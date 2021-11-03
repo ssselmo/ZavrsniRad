@@ -70,7 +70,8 @@ namespace DonorCentar.Controllers
                    Sadrzaj=o.Sadrzaj,
                     ObavijestId = o.ObavijestId,
                    
-                    Vrijeme = o.Vrijeme
+                    Vrijeme = o.Vrijeme,
+                    AdminId=o.AdminId
                    
                 }).ToList()
             };
@@ -182,5 +183,13 @@ namespace DonorCentar.Controllers
             this.PostaviViewBag("PregledPartnera");
             return View(partner.ToPagedList(page ?? 1, 4));
         }
+
+        public IActionResult Documents(int Id)
+        {
+            var primalac = db.Primalac.FirstOrDefault(x => x.KorisnikId == Id);
+            return File(primalac.DokumentVerifikacije, "image/jpeg");
+
+        }
+
     }
 }

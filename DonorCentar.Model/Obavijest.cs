@@ -12,5 +12,8 @@ namespace DonorCentar.Model
         public string Naslov { get; set; }
         public string Sadrzaj { get; set; }
         public DateTime Vrijeme { get; set; }
+        public Administrator Admin { get; set; }
+
+        public int AdminId { get; set; }
     }
 }

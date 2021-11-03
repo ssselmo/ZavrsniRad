@@ -27,8 +27,26 @@
 
                 <Label Margin="0,20,0,10" FontSize="18" FontAttributes="Bold" Text="{Binding Obavijest.Naslov}"/>
                 <Label FontSize="16" FontAttributes="None" Text="{Binding Obavijest.Sadrzaj}"/>
-                
-                <Label Margin="0,20,0,0" HorizontalOptions="End" Text="{Binding Obavijest.Vrijeme, StringFormat='{0:MMMM dd, yyyy}'}"/>
+                <Label></Label>
+                <Label HorizontalOptions="End"
+                            LineBreakMode="NoWrap" 
+                          >
+                    <Label.FormattedText >
+                        <FormattedString>
+                            <FormattedString.Spans>
+
+                                <Span FontAttributes="Italic" FontSize="15"  Text="{Binding Obavijest.Admin.Korisnik.Ime }"/>
+                                <Span Text=" "/>
+                                <Span FontAttributes="Italic" FontSize="15"  Text="{Binding Obavijest.Admin.Korisnik.Prezime }"/>
+                                <Span Text=" / "/>
+
+                                <Span FontAttributes="Italic" FontSize="15"  Text="{Binding Obavijest.Vrijeme, StringFormat='{0:MMMM dd, yyyy}'}"/>
+
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
 
 
 

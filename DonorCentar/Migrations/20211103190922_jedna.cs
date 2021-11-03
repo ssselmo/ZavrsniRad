@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DonorCentar.WebAPI.Migrations
+namespace DonorCentar.Web.Migrations
 {
-    public partial class inicijalna : Migration
+    public partial class jedna : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,7 +86,8 @@ namespace DonorCentar.WebAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Naslov = table.Column<string>(nullable: true),
                     Sadrzaj = table.Column<string>(nullable: true),
-                    Vrijeme = table.Column<DateTime>(nullable: false)
+                    Vrijeme = table.Column<DateTime>(nullable: false),
+                    AdminId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -133,19 +134,6 @@ namespace DonorCentar.WebAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipNotifikacije",
-                columns: table => new
-                {
-                    TipNotifikacijeId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Notifikacija = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TipNotifikacije", x => x.TipNotifikacijeId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "VrstaDonacije",
                 columns: table => new
                 {
@@ -187,7 +175,8 @@ namespace DonorCentar.WebAPI.Migrations
                     LoginPodaciId = table.Column<int>(nullable: false),
                     LicniPodaciId = table.Column<int>(nullable: false),
                     GradId = table.Column<int>(nullable: false),
-                    TipKorisnikaId = table.Column<int>(nullable: false)
+                    TipKorisnikaId = table.Column<int>(nullable: false),
+                    Izbrisan = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -398,48 +387,6 @@ namespace DonorCentar.WebAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Notifikacija",
-                columns: table => new
-                {
-                    NotifikacijaId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TipNotifikacijeId = table.Column<int>(nullable: true),
-                    ZaKorisnikId = table.Column<int>(nullable: false),
-                    OdKorisnikId = table.Column<int>(nullable: false),
-                    TipKorisnikaId = table.Column<int>(nullable: false),
-                    Vrijeme = table.Column<DateTime>(nullable: false),
-                    DonacijaId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Notifikacija", x => x.NotifikacijaId);
-                    table.ForeignKey(
-                        name: "FK_Notifikacija_Donacija_DonacijaId",
-                        column: x => x.DonacijaId,
-                        principalTable: "Donacija",
-                        principalColumn: "DonacijaId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Notifikacija_Korisnik_OdKorisnikId",
-                        column: x => x.OdKorisnikId,
-                        principalTable: "Korisnik",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Notifikacija_TipNotifikacije_TipNotifikacijeId",
-                        column: x => x.TipNotifikacijeId,
-                        principalTable: "TipNotifikacije",
-                        principalColumn: "TipNotifikacijeId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Notifikacija_Korisnik_ZaKorisnikId",
-                        column: x => x.ZaKorisnikId,
-                        principalTable: "Korisnik",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Administrator_KorisnikId",
                 table: "Administrator",
@@ -526,26 +473,6 @@ namespace DonorCentar.WebAPI.Migrations
                 column: "TipKorisnikaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notifikacija_DonacijaId",
-                table: "Notifikacija",
-                column: "DonacijaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Notifikacija_OdKorisnikId",
-                table: "Notifikacija",
-                column: "OdKorisnikId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Notifikacija_TipNotifikacijeId",
-                table: "Notifikacija",
-                column: "TipNotifikacijeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Notifikacija_ZaKorisnikId",
-                table: "Notifikacija",
-                column: "ZaKorisnikId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Partner_KorisnikId",
                 table: "Partner",
                 column: "KorisnikId");
@@ -568,9 +495,6 @@ namespace DonorCentar.WebAPI.Migrations
                 name: "Donor");
 
             migrationBuilder.DropTable(
-                name: "Notifikacija");
-
-            migrationBuilder.DropTable(
                 name: "Obavijest");
 
             migrationBuilder.DropTable(
@@ -584,9 +508,6 @@ namespace DonorCentar.WebAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Donacija");
-
-            migrationBuilder.DropTable(
-                name: "TipNotifikacije");
 
             migrationBuilder.DropTable(
                 name: "Korisnik");

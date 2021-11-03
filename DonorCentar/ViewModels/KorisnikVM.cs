@@ -19,10 +19,10 @@ namespace DonorCentar.ViewModels
         public int NeutralniDojmovi { get; set; }
         public int NegativniDojmovi { get; set; }
         public string Sifra { get; set; }
-        public byte[] ProfilnaSlika { get; internal set; }
+        public byte[] ProfilnaSlika { get; set; }
 
         public IFormFile UploadSlika { get; set; }
-        public string Ime { get; internal set; }
-        public string Prezime { get; internal set; }
+        public string Ime { get; set; }
+        public string Prezime { get;  set; }
     }
 }

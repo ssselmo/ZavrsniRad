@@ -15,7 +15,10 @@ namespace DonorCentar.ViewModels
             public string Sadrzaj { get; set; }
             public string Naslov { get; set; }
             public DateTime Vrijeme { get; set; }
-          
+            public int AdminId { get; set; }
+
+
+
         }
     }
 }

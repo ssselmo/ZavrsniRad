@@ -70,7 +70,7 @@ namespace DonorCentar.Mobile.ViewModels
 
           
             Obavijest.Vrijeme = DateTime.Now;
-          
+            Obavijest.AdminId = APIService.Korisnik.Id;
 
 
 

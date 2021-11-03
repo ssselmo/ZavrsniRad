@@ -220,32 +220,7 @@ namespace DonorCentar.WebAPI
             context.VrstaDonacije.Add(vrstedonacija[1]);
             context.SaveChanges();
 
-            var obavijesti = new List<Obavijest>
-            {new Obavijest
-
-                {
-                    Naslov="Nova organizacija",
-                    Sadrzaj="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac lacinia urna. Donec nulla turpis, rutrum nec arcu bibendum, facilisis iaculis dolor.",
-                    Vrijeme=new DateTime(2021,9,8)
-                },
-                 new Obavijest
-                {
-                    Naslov="Pomoć",
-                    Sadrzaj="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac lacinia urna. Donec nulla turpis, rutrum nec arcu bibendum, facilisis iaculis dolor.",
-                    Vrijeme=new DateTime(2021,9,8)
-                },
-                  new Obavijest
-                {
-                    Naslov="Nova",
-                    Sadrzaj="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac lacinia urna. Donec nulla turpis, rutrum nec arcu bibendum, facilisis iaculis dolor.",
-                    Vrijeme=new DateTime(2021,9,8)
-                }
-
-
-
-            };
-            context.Obavijest.AddRange(obavijesti);
-            context.SaveChanges();
+            
 
             var informacije = new List<InformacijeTransporta>
             {new InformacijeTransporta
@@ -346,7 +321,7 @@ var admin = new Administrator
                     }
 
                 },
-                DokumentVerifikacije = File.ReadAllBytes("profilepic.png"),
+                DokumentVerifikacije = File.ReadAllBytes("Verifikacija.png"),
                 Verifikovan=true,
                 DatumRegistracije=DateTime.Now
 
@@ -378,9 +353,9 @@ var admin = new Administrator
                     }
 
                 },
-                DokumentVerifikacije= File.ReadAllBytes("profilepic.png"),
+                DokumentVerifikacije= File.ReadAllBytes("Verifikacija.png"),
                 DatumRegistracije = DateTime.Now,
-                Verifikovan = true
+                Verifikovan = false
 
             };
             context.Primalac.Add(primalac2);
@@ -409,7 +384,7 @@ var admin = new Administrator
                     }
 
                 },
-                DokumentVerifikacije = File.ReadAllBytes("profilepic.png"),
+                DokumentVerifikacije = File.ReadAllBytes("Verifikacija.png"),
                 DatumRegistracije = DateTime.Now,
                 Verifikovan=true
 
@@ -577,6 +552,37 @@ var admin = new Administrator
             context.DojamKorisnik.Add(dojamkorisnik2);
             context.SaveChanges();
 
+            var obavijesti = new List<Obavijest>
+            {new Obavijest
+
+                {
+                    Naslov="Nova organizacija",
+                    Sadrzaj="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac lacinia urna. Donec nulla turpis, rutrum nec arcu bibendum, facilisis iaculis dolor.",
+                    Vrijeme=new DateTime(2021,9,8),
+                    AdminId= admin.Id
+                },
+                 new Obavijest
+                {
+                    Naslov="Pomoć",
+                    Sadrzaj="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac lacinia urna. Donec nulla turpis, rutrum nec arcu bibendum, facilisis iaculis dolor.",
+                    Vrijeme=new DateTime(2021,9,8),
+                   AdminId= admin.Id
+
+                },
+                  new Obavijest
+                {
+                    Naslov="Nova",
+                    Sadrzaj="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ac lacinia urna. Donec nulla turpis, rutrum nec arcu bibendum, facilisis iaculis dolor.",
+                    Vrijeme=new DateTime(2021,9,8),
+                   AdminId= admin.Id
+
+                }
+
+
+
+            };
+            context.Obavijest.AddRange(obavijesti);
+            context.SaveChanges();
             #endregion
 
 

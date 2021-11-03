@@ -30,7 +30,7 @@
                 <Label Text="Moj profil" FontSize="30"/>
 
                 <StackLayout Orientation="Vertical">
-                    <Image x:Name="ProfilnaSlika" Source="{Binding ProfilnaSlika, Converter={StaticResource imgConv}}" />
+                    <Image HeightRequest="155" x:Name="ProfilnaSlika" Source="{Binding ProfilnaSlika, Converter={StaticResource imgConv}}" />
                     <Button x:Name="btnSelectPic" Text="Odaberi sliku" Clicked="btnSelectPic_Clicked" BackgroundColor="DarkOrange" TextColor="White" />
                 </StackLayout>
                 
@@ -192,7 +192,7 @@
 
 
                 <StackLayout IsVisible="{Binding IsPrimalac}" Orientation="Vertical">
-                    <Image x:Name="Dokument" Source="{Binding Dokument, Converter={StaticResource imgConv}}" />
+                    <Image HeightRequest="500" x:Name="Dokument" Source="{Binding Dokument, Converter={StaticResource imgConv}}" />
                     <Button x:Name="btnSelectDoc" Text="Odaberi dokument" Clicked="btnSelectDoc_Clicked" BackgroundColor="DarkOrange" TextColor="White" />
                 </StackLayout>
 
