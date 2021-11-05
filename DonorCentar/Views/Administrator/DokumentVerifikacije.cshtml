@@ -1,0 +1,38 @@
+﻿@model DonorCentar.Web.ViewModels.AdminDokumentVerifikacijeVM
+
+
+<div class="page-box">
+    <div id="dokument">
+
+        @if (Model.Dokument != null)
+        {
+
+            var base64 = Convert.ToBase64String(Model.Dokument);
+            var imgSrc = String.Format("data:image/jpeg;base64,{0}", base64);
+
+
+            <img src="@imgSrc" class="mb-4" />
+        }
+        else
+        {
+            <label>Korisnik nema dokument verifikacije.</label>
+        }
+
+    </div>
+    <div id="button">
+
+
+        @if (Model.Verifikovan)
+        {
+            <label >Korisnik je verifikovan.</label>
+        }
+        else
+        { <label>Korisnik nije verifikovan.</label>}
+
+        <a asp-controller="Administrator" asp-action="PromijeniVerifikuj" asp-route-id="@Model.Id" class="btn btn-primary">Promijeni stanje verifikacije</a>
+        <a asp-controller="Administrator" asp-action="PregledPrimaoca" class="btn btn-primary">Nazad</a>
+
+
+
+    </div>
+ </div>

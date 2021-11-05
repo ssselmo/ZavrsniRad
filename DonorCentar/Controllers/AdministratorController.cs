@@ -11,7 +11,7 @@ using X.PagedList;
 using X.PagedList.Mvc.Core;
 using Microsoft.AspNetCore.SignalR;
 using DonorCentar.Hubs;
-
+using DonorCentar.Web.ViewModels;
 
 namespace DonorCentar.Controllers
 {
@@ -115,14 +115,7 @@ namespace DonorCentar.Controllers
             return RedirectToAction("NeverifikovaniPrimaoci");
         }
 
-        public ActionResult DodajAdmina()
-        {
-            Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
-
-            this.PostaviViewBag("DodajAdmina");
-            return View();
-        }
+     
 
         
 
@@ -190,6 +183,32 @@ namespace DonorCentar.Controllers
             return File(primalac.DokumentVerifikacije, "image/jpeg");
 
         }
+
+        public IActionResult DokumentVerifikacije(int Id)
+        {
+            var primalac = db.Primalac.FirstOrDefault(x => x.Id == Id);
+            AdminDokumentVerifikacijeVM vm = new AdminDokumentVerifikacijeVM
+            {
+                Dokument = primalac.DokumentVerifikacije,
+                Verifikovan = primalac.Verifikovan,
+                Id=Id
+            };
+            
+            return View(vm);
+        }
+
+        public IActionResult PromijeniVerifikuj(int Id)
+        {
+            Korisnik k = HttpContext.GetLogiraniKorisnik();
+
+
+            var primalac = db.Primalac.Where(d => d.Id == Id).FirstOrDefault();
+            primalac.Verifikovan = !primalac.Verifikovan;
+            db.SaveChanges();
+
+            return RedirectToAction("DokumentVerifikacije", new{ Id=Id});
+        }
+
 
     }
 }
