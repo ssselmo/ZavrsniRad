@@ -30,6 +30,29 @@ namespace DonorCentar.WebAPI.Services
             return _mapper.Map<Model.Primalac>(entity);
         }
 
+        public Model.Primalac ToggleVerifikuj(int id)
+        {
+            var query = Context.Primalac.Where(x => x.Korisnik.Izbrisan == false).AsQueryable();
+            query = query.Where(x => x.Id == id);
+            query = query.Include(x => x.Korisnik.Grad.Kanton);
+            query = query.Include(x => x.Korisnik.LicniPodaci);
+            query = query.Include(x => x.Korisnik.TipKorisnika);
+            query = query.Include(x => x.Korisnik.LoginPodaci);
+
+            var entity = query.FirstOrDefault();
+
+            entity.Verifikovan = !entity.Verifikovan;
+            Context.SaveChanges();
+
+
+            return _mapper.Map<Model.Primalac>(entity);
+
+
+
+
+
+
+        }
 
 
         public override IEnumerable<Model.Primalac> Get(PrimalacSearchRequest search)
@@ -98,5 +121,7 @@ namespace DonorCentar.WebAPI.Services
 
             return _mapper.Map<Model.Primalac>(entity);
         }
+
+       
     }
 }

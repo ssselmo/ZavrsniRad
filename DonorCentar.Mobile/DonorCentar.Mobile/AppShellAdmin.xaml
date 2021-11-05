@@ -81,7 +81,7 @@
     -->
 
     <FlyoutItem Title="Primaoci" >
-        <ShellContent Route="PrimaociPage" ContentTemplate="{DataTemplate local:PrimaociPage}" />
+        <ShellContent Route="AdminPrimaociPage" ContentTemplate="{DataTemplate local:AdminPrimaociPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Donori" >
         <ShellContent Route="DonoriPage" ContentTemplate="{DataTemplate local:DonoriPage}" />

@@ -12,6 +12,7 @@ namespace DonorCentar.WebAPI.Services
     {
 
         Model.Primalac Verifikuj(int id);
+        Model.Primalac ToggleVerifikuj(int id);
         Model.Primalac GetByKorisnikId(int id);
         Model.Primalac UpdateDokument(int id, byte[] dokument);
 

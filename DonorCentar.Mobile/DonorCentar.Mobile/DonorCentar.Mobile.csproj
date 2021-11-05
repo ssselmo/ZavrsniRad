@@ -70,6 +70,9 @@
     <Compile Update="Views\EditObavijestPage.xaml.cs">
       <DependentUpon>EditObavijestPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\InfoPrimaociPage.xaml.cs">
+      <DependentUpon>InfoPrimaociPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\PreporukaPage.xaml.cs">
       <DependentUpon>PreporukaPage.xaml</DependentUpon>
     </Compile>
@@ -79,8 +82,8 @@
     <Compile Update="Views\InfoObavijestiPage.xaml.cs">
       <DependentUpon>InfoObavijestiPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\InfoPrimaociPage.xaml.cs">
-      <DependentUpon>InfoPrimaociPage.xaml</DependentUpon>
+    <Compile Update="Views\AdminInfoPrimaociPage.xaml.cs">
+      <DependentUpon>AdminInfoPrimaociPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\InfoPotrebePage.xaml.cs">
       <DependentUpon>InfoPotrebePage.xaml</DependentUpon>
@@ -90,6 +93,9 @@
     </Compile>
     <Compile Update="Views\PotrebaPage.xaml.cs">
       <DependentUpon>PotrebaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AdminPrimaociPage.xaml.cs">
+      <DependentUpon>AdminPrimaociPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\PrimljeneDonacijePage.xaml.cs">
       <DependentUpon>PrimljeneDonacijePage.xaml</DependentUpon>

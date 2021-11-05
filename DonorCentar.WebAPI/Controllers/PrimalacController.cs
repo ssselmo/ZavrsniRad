@@ -33,6 +33,13 @@ namespace DonorCentar.WebAPI.Controllers
             return _service.Verifikuj(id);
         }
 
+
+        [HttpPut("ToggleVerifikuj/{id}")]
+        public Model.Primalac ToggleVerifikuj(int id)
+        {
+            return _service.ToggleVerifikuj(id);
+        }
+
         [HttpGet("{id}")]
         public Model.Primalac GetById(int id)
         {
