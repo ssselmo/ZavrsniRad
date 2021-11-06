@@ -209,6 +209,35 @@ namespace DonorCentar.Controllers
             return RedirectToAction("DokumentVerifikacije", new{ Id=Id});
         }
 
+        public IActionResult DodajObavijest()
+        {
+            Korisnik k = HttpContext.GetLogiraniKorisnik();
+            AdminDodajObavijestViewModel vm = new AdminDodajObavijestViewModel
+            {
+                AdminId = k.Id
 
+            };
+
+            this.PostaviViewBag("DodajObavijest");
+            return View(vm);
+        }
+
+        public IActionResult SpasiObavijest(AdminDodajObavijestViewModel vm)
+        {
+            var admin = db.Administrator.Where(x => x.KorisnikId == vm.AdminId).FirstOrDefault();
+            Obavijest nova = new Obavijest
+            {
+                AdminId = admin.Id,
+                Naslov = vm.Naslov,
+                Sadrzaj = vm.Sadrzaj,
+                Vrijeme = DateTime.Now
+
+            };
+
+            db.Add(nova);
+            db.SaveChanges();
+
+            return RedirectToAction("Obavijesti");
+        }
     }
 }
