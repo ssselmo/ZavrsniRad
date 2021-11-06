@@ -3,7 +3,11 @@
     ViewData["Title"] = "Obavijesti";
     Layout = "~/Views/Shared/_Primalac.cshtml";
 }
-
+<br />
+<br />
+<br />
+<br />
+<br />
 <div class="page-box-top">
     <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action active">
@@ -12,12 +16,12 @@
         <ul class="list-group">
             @foreach (var x in Model.rows)
             {
-            <li class="list-group-item">
-                <h3>@x.Naslov</h3>
-                <p>@x.Sadrzaj</p>
-                <p>Datum objave : @x.Vrijeme</p>
-                @*<a asp-action="IzbrisiObavijest" asp-route-obavijestId="@x.ObavijestId" class="btn btn-danger float-right">Izbriši</a>*@
-            </li>
+                <li class="list-group-item">
+                    <h3>@x.Naslov</h3>
+                    <p>@x.Sadrzaj</p>
+                    <p>Datum objave : @x.Vrijeme</p>
+                    @*<a asp-action="IzbrisiObavijest" asp-route-obavijestId="@x.ObavijestId" class="btn btn-danger float-right">Izbriši</a>*@
+                </li>
             }
 
         </ul>
