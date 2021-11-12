@@ -46,6 +46,9 @@
     <Compile Update="AppShellAdmin.xaml.cs">
       <DependentUpon>AppShellAdmin.xaml</DependentUpon>
     </Compile>
+    <Compile Update="AppShellNeverifikovanPrimalac.xaml.cs">
+      <DependentUpon>AppShellNeverifikovanPrimalac.xaml</DependentUpon>
+    </Compile>
     <Compile Update="AppShellPrimalac.xaml.cs">
       <DependentUpon>AppShellPrimalac.xaml</DependentUpon>
     </Compile>

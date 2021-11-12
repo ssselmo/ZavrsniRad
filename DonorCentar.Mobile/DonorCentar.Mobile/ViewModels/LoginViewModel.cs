@@ -11,6 +11,8 @@ namespace DonorCentar.Mobile.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         private readonly APIService _servicekorisnici = new APIService("Korisnici");
+        private readonly APIService _serviceprimalac = new APIService("Primalac");
+
 
         public Command LoginCommand { get; }
         private ValidatableObject<string> korisnickoime = new ValidatableObject<string> ();
@@ -76,6 +78,7 @@ namespace DonorCentar.Mobile.ViewModels
                     APIService.Korisnik = await _servicekorisnici.Get<Model.Korisnik>(null, "Profil");
                     
                     
+                    
 
                     if (APIService.Korisnik.Tip=="Administrator")
                     {
@@ -89,7 +92,16 @@ namespace DonorCentar.Mobile.ViewModels
                     Application.Current.MainPage = new AppShellDonor();
 
                     if (APIService.Korisnik.Tip == "Primalac")
+                    {
+                        var primalac = await _serviceprimalac.GetById<Model.Primalac>(APIService.Korisnik.Id, "GetByKorisnikId");
+                        if(primalac.Verifikovan)
                         Application.Current.MainPage = new AppShellPrimalac();
+                        else
+                            Application.Current.MainPage = new AppShellNeverifikovanPrimalac();
+
+                    }
+
+
 
                     if (APIService.Korisnik.Tip == "Partner")
                         Application.Current.MainPage = new AppShellPartner();
