@@ -21,25 +21,20 @@
             <tbody>
                 @foreach (var x in Model.rows)
                 {
-                    <tr>
-                        <td>@x.LicniPodaciNaziv</td>
-                        <td>@x.TipDonacije</td>
-                        <td>@x.StatusOpis</td>
-                        <td><a class="btn btn-info" asp-route-donacijaId="@x.DonacijaId" asp-route-akcija="1" asp-action="DetaljiDonacije">Detalji</a></td>
+                <tr>
+                    <td>@x.LicniPodaciNaziv</td>
+                    <td>@x.TipDonacije</td>
+                    <td>@x.StatusOpis</td>
+                    <td><a class="btn btn-info" asp-route-donacijaId="@x.DonacijaId" asp-route-akcija="1" asp-action="DetaljiDonacije">Detalji</a></td>
 
-                        <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="PrekiniDonaciju">Prekini donaciju</a></td>
-                        @if (x.InformacijaId == 1)
-                        {
-                            <td><a class="btn btn-success" asp-route-donacijaId="@x.DonacijaId" asp-action="ObezbjediTransport">Obezbjedi transport</a></td>
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
+                    <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="PrekiniDonaciju">Prekini donaciju</a></td>
+                    <td><a class="btn btn-danger" asp-route-Id="@x.DonacijaId" asp-action="Dojam">Dojam</a></td>
 
 
 
-                    </tr>
+
+
+                </tr>
                 }
             </tbody>
         </table>

@@ -57,9 +57,9 @@ namespace DonorCentar.Controllers
                 ProfilnaSlika = k1.LicniPodaci.ProfilnaSlika,
                 Grad = k1.Grad.Naziv,
                 Verifikovan = verifikovan,
-                PozitivniDojmovi = db.DojamKorisnik.Where(d => d.KorisnikId == k.Id).Count(d => d.DojamId == 1),
-                NeutralniDojmovi = db.DojamKorisnik.Where(d => d.KorisnikId == k.Id).Count(d => d.DojamId == 2),
-                NegativniDojmovi = db.DojamKorisnik.Where(d => d.KorisnikId == k.Id).Count(d => d.DojamId == 3)
+                PozitivniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == primalacId).Count(d => d.DojamId == 3),
+                NeutralniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == primalacId).Count(d => d.DojamId == 2),
+                NegativniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == primalacId).Count(d => d.DojamId == 1)
             };
 
             this.PostaviViewBag("Index");

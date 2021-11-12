@@ -20,7 +20,11 @@
     <p class="text-info"><em>@Model.TipKorisnika</em></p>
 </div>
 <div id="profil-right">
+    @if (Model.TipKorisnika == "Primalac")
+    { 
     <div id="profil-name">
+
+
 
         <h3 class="text-secondary">Dojmovi</h3>
 
@@ -39,6 +43,7 @@
             </li>
         </ul>
     </div>
+    }
     <div id="profil-info">
         <ul class="list-group">
             <li class="list-group-item">

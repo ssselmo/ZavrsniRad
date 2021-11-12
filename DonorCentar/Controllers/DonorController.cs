@@ -6,6 +6,7 @@ using DonorCentar.Helper;
 using DonorCentar.Hubs;
 using DonorCentar.Models;
 using DonorCentar.ViewModels;
+using DonorCentar.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.SignalR;
@@ -395,6 +396,60 @@ namespace DonorCentar.Controllers
             return View(partner.ToPagedList(page ?? 1, 4));
         }
 
+        public IActionResult Dojam (int Id)
+        {
+            
+            var dojam = db.DojamKorisnik.Where(x => x.DonacijaId == Id).FirstOrDefault();
 
+           
+
+            DonorDojamVM vm = new DonorDojamVM
+            {
+                DojamList = db.Dojam.Select(x => new SelectListItem
+                {
+                    Text = x.VrstaDojma,
+                    Value = x.Id.ToString()
+                }).ToList(),
+                DonacijaId = Id
+
+            };
+            if (dojam != null)
+            {
+                vm.Opis = dojam.Opis;
+                vm.DojamId = dojam.DojamId;
+            }
+
+            this.PostaviViewBag("Dojam");
+            return View(vm);
+        }
+        public IActionResult SpasiDojam(DonorDojamVM vm)
+        {
+            var dojam = db.DojamKorisnik.Where(x => x.DonacijaId == vm.DonacijaId).FirstOrDefault();
+            Korisnik k = HttpContext.GetLogiraniKorisnik();
+
+
+            if (dojam!=null)
+            {
+                dojam.Opis = vm.Opis;
+                dojam.DojamId = vm.DojamId;
+
+
+            }
+            else
+            {
+                dojam = new DojamKorisnik
+                {
+                    Datum = DateTime.Now,
+                    DojamId = vm.DojamId,
+                    Opis = vm.Opis,
+                    DonacijaId = vm.DonacijaId,
+                    KorisnikId = k.Id
+                };
+                db.Add(dojam);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("MojeAktivneDonacije");
+        }
     }
 }
