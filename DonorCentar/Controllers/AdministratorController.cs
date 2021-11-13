@@ -239,5 +239,33 @@ namespace DonorCentar.Controllers
 
             return RedirectToAction("Obavijesti");
         }
+
+        public IActionResult EditObavijest(int Id)
+        {
+            var obavijest = db.Obavijest.Find(Id);
+            AdminEditObavijestViewModel vm = new AdminEditObavijestViewModel
+            {
+                Naslov=obavijest.Naslov,
+                Sadrzaj=obavijest.Sadrzaj,
+                ObavijestId=obavijest.ObavijestId
+
+            };
+
+            
+
+            this.PostaviViewBag("EditObavijest");
+            return View(vm);
+        }
+        public IActionResult SpasiEditObavijest(AdminEditObavijestViewModel vm)
+        {
+            var obavijest = db.Obavijest.Find(vm.ObavijestId);
+            obavijest.Naslov = vm.Naslov;
+            obavijest.Sadrzaj = vm.Sadrzaj;
+
+
+            db.SaveChanges();
+
+            return RedirectToAction("Obavijesti");
+        }
     }
 }

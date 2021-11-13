@@ -1,0 +1,64 @@
+﻿@model DonorCentar.Web.ViewModels.AdminEditObavijestViewModel
+
+@{
+    ViewData["Title"] = "Uredi obavijest";
+    Layout = "~/Views/Shared/_Administrator.cshtml";
+}
+
+
+
+
+
+<div class="content-box">
+    <div class="page-box">
+        <h1>@ViewData["Title"]</h1>
+        <form asp-action="SpasiEditObavijest">
+            <div class="form-group">
+                <label for="Naslov">Naslov</label>
+                <textarea id="Naslov" asp-for="@Model.Naslov" class="form-control bigger-box"></textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="Sadrzaj">Sadrzaj</label>
+                <textarea id="Sadrzaj" asp-for="@Model.Sadrzaj" class="form-control bigger-box"></textarea>
+
+            </div>
+            <div>
+                <input asp-for="ObavijestId" hidden />
+            </div>
+            <button type="submit" class="btn btn-dark">Spasi</button>
+        </form>
+
+
+
+        <div class="modal" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Obavijest spašena</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Obavijest je uspješno spašena.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a asp-action="DodajObavijest" class="btn btn-primary">U redu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        if ('@ViewBag.Prikazi' != null && '@ViewBag.Prikazi' == "prikazi")
+        {
+            $('#myModal').modal('show');
+        }
+    </script>
+}
