@@ -1,29 +1,33 @@
-﻿@model DonorCentar.ViewModels.ObavijestiVM
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+
+@*@model DonorCentar.ViewModels.ObavijestiVM*@
+@model IPagedList<DonorCentar.Models.Obavijest>
+
 @{
     ViewData["Title"] = "Obavijesti";
-    Layout = "~/Views/Shared/_Primalac.cshtml";
-}
-<br />
-<br />
-<br />
-<br />
-<br />
-<div class="page-box-top">
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">
-            Obavijesti
-        </a>
-        <ul class="list-group">
-            @foreach (var x in Model.rows)
-            {
-                <li class="list-group-item">
-                    <h3>@x.Naslov</h3>
-                    <p>@x.Sadrzaj</p>
-                    <p>Datum objave : @x.Vrijeme</p>
-                    @*<a asp-action="IzbrisiObavijest" asp-route-obavijestId="@x.ObavijestId" class="btn btn-danger float-right">Izbriši</a>*@
-                </li>
-            }
+    Layout = "~/Views/Shared/_Primalac.cshtml";}
 
-        </ul>
+<div class="content-box">
+    <div class="page-box">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">
+                Obavijesti
+            </a>
+            <ul class="list-group">
+                @foreach (var x in Model)
+                {
+                    <li class="list-group-item">
+                        <h3>@x.Naslov</h3>
+                        <p>@x.Sadrzaj</p>
+                        <p>Datum objave : @x.Vrijeme</p>
+
+                    </li>
+
+
+                }
+            </ul>
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("Obavijesti", new { page }))
     </div>
 </div>

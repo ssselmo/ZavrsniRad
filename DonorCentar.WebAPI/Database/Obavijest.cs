@@ -14,5 +14,6 @@ namespace DonorCentar.WebAPI.Database
         public DateTime Vrijeme { get; set; }
         public Administrator Admin { get; set; }
         public int AdminId { get; set; }
+
     }
 }

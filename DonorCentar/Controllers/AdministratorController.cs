@@ -15,7 +15,7 @@ using DonorCentar.Web.ViewModels;
 
 namespace DonorCentar.Controllers
 {
-    [Autorizacija(admin:true)]
+    [Autorizacija(admin: true)]
     public class AdministratorController : Controller
     {
         private BazaPodataka db;
@@ -30,7 +30,7 @@ namespace DonorCentar.Controllers
         public IActionResult Index()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
 
             int adminId = db.Administrator.Where(p => p.KorisnikId == k.Id).FirstOrDefault().Id;
 
@@ -43,7 +43,7 @@ namespace DonorCentar.Controllers
             {
                 Id = adminId,
                 Ime = k1.LicniPodaci.Ime,
-                Prezime= k1.LicniPodaci.Prezime,
+                Prezime = k1.LicniPodaci.Prezime,
                 TipKorisnika = k1.TipKorisnika.Tip,
                 Adresa = k1.LicniPodaci.Adresa,
                 BrojTelefona = k1.LicniPodaci.BrojTelefona,
@@ -57,34 +57,20 @@ namespace DonorCentar.Controllers
             return View(korisnikViewModel);
         }
 
-        public ActionResult Obavijesti()
+        public ActionResult Obavijesti(int? page)
         {
-            Korisnik k = HttpContext.GetLogiraniKorisnik();
+
+            IEnumerable<Obavijest> obavijesti = db.Obavijest.ToList();
+
             
-
-            ObavijestiVM model = new ObavijestiVM
-            {
-                rows = db.Obavijest.Select(o => new ObavijestiVM.Row
-                {
-                   Naslov=o.Naslov,
-                   Sadrzaj=o.Sadrzaj,
-                    ObavijestId = o.ObavijestId,
-                   
-                    Vrijeme = o.Vrijeme,
-                    AdminId=o.AdminId
-                   
-                }).ToList()
-            };
-            model.rows = model.rows.OrderByDescending(m => m.ObavijestId).ToList();
-
             this.PostaviViewBag("Obavijesti");
-            return View(model);
+            return View(obavijesti.ToPagedList(page ?? 1, 2));
         }
 
         public ActionResult NeverifikovaniPrimaoci()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
 
             #region old way
             //List<int> korisnikId = db.Primalac.Where(p => p.Verifikovan == false).Select(p => p.KorisnikId).ToList();
@@ -107,7 +93,7 @@ namespace DonorCentar.Controllers
         public ActionResult Verifikuj(int korisnikId)
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
 
             db.Primalac.Where(d => d.KorisnikId == korisnikId).FirstOrDefault().Verifikovan = true;
             db.SaveChanges();
@@ -115,14 +101,14 @@ namespace DonorCentar.Controllers
             return RedirectToAction("NeverifikovaniPrimaoci");
         }
 
-     
 
-        
+
+
 
         public ActionResult IzbrisiObavijest(int obavijestId)
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
             Obavijest o = db.Obavijest.Find(obavijestId);
 
             db.Obavijest.Remove(o);
@@ -131,18 +117,18 @@ namespace DonorCentar.Controllers
             return RedirectToAction("Obavijesti");
         }
 
-        
+
 
 
         public ActionResult PregledPrimaoca(int? page)
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
 
             IEnumerable<Primalac> primaoci = db.Primalac
                 .Include(x => x.Korisnik.Grad.Kanton)
               .Include(x => x.Korisnik.LicniPodaci).ToList();
-            
+
 
 
             this.PostaviViewBag("PregledPrimaoca");
@@ -152,7 +138,7 @@ namespace DonorCentar.Controllers
         public ActionResult PregledDonora(int? page)
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
             IEnumerable<Donor> donor = db.Donor
                 .Include(x => x.Korisnik.Grad.Kanton)
               .Include(x => x.Korisnik.LicniPodaci).ToList();
@@ -166,7 +152,7 @@ namespace DonorCentar.Controllers
         public ActionResult PregledPartnera(int? page)
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
 
             IEnumerable<Partner> partner = db.Partner
                 .Include(x => x.Korisnik.Grad.Kanton)
@@ -180,7 +166,16 @@ namespace DonorCentar.Controllers
         public IActionResult Documents(int Id)
         {
             var primalac = db.Primalac.FirstOrDefault(x => x.KorisnikId == Id);
-            return File(primalac.DokumentVerifikacije, "image/jpeg");
+
+            if (primalac.DokumentVerifikacije == null)
+            {
+                TempData["error_poruka"] = "Korisnik nema dokument verifikacije";
+                return RedirectToAction("NeverifikovaniPrimaoci");
+                //return Content("Korisnik nema dokument verifikacije");
+
+            }
+            else
+                return File(primalac.DokumentVerifikacije, "image/jpeg");
 
         }
 
@@ -191,9 +186,9 @@ namespace DonorCentar.Controllers
             {
                 Dokument = primalac.DokumentVerifikacije,
                 Verifikovan = primalac.Verifikovan,
-                Id=Id
+                Id = Id
             };
-            
+
             return View(vm);
         }
 
@@ -206,7 +201,7 @@ namespace DonorCentar.Controllers
             primalac.Verifikovan = !primalac.Verifikovan;
             db.SaveChanges();
 
-            return RedirectToAction("DokumentVerifikacije", new{ Id=Id});
+            return RedirectToAction("DokumentVerifikacije", new { Id = Id });
         }
 
         public IActionResult DodajObavijest()
@@ -245,13 +240,13 @@ namespace DonorCentar.Controllers
             var obavijest = db.Obavijest.Find(Id);
             AdminEditObavijestViewModel vm = new AdminEditObavijestViewModel
             {
-                Naslov=obavijest.Naslov,
-                Sadrzaj=obavijest.Sadrzaj,
-                ObavijestId=obavijest.ObavijestId
+                Naslov = obavijest.Naslov,
+                Sadrzaj = obavijest.Sadrzaj,
+                ObavijestId = obavijest.ObavijestId
 
             };
 
-            
+
 
             this.PostaviViewBag("EditObavijest");
             return View(vm);
@@ -267,5 +262,8 @@ namespace DonorCentar.Controllers
 
             return RedirectToAction("Obavijesti");
         }
+
+       
+
     }
 }

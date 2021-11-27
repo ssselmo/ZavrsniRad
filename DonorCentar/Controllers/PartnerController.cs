@@ -59,26 +59,14 @@ namespace DonorCentar.Controllers
             return View(korisnikViewModel);
         }
 
-        public ActionResult Obavijesti()
+        public ActionResult Obavijesti(int? page)
         {
-            Korisnik k = HttpContext.GetLogiraniKorisnik();
 
-            ObavijestiVM model = new ObavijestiVM
-            {
-                rows = db.Obavijest.Select(o => new ObavijestiVM.Row
-                {
-                    AdminId=o.AdminId,
-                    Vrijeme = o.Vrijeme,
-                    Naslov = o.Naslov,
-                    ObavijestId = o.ObavijestId,
-                    Sadrzaj = o.Sadrzaj
+            IEnumerable<Obavijest> obavijesti = db.Obavijest.ToList();
 
-                }).ToList()
-            };
 
             this.PostaviViewBag("Obavijesti");
-            return View(model);
-            
+            return View(obavijesti.ToPagedList(page ?? 1, 2));
         }
         //public ActionResult IzbrisiObavijest(int obavijestId)
         //{

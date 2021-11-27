@@ -29,17 +29,38 @@ namespace DonorCentar.Controllers
                     .Include(k => k.LicniPodaci)
                     .SingleOrDefault();
 
-                lista.Add(new SelectListNeverifikovaniPrimaociVM
+                if(k.LicniPodaci.Prezime==null)
                 {
-                    Adresa = k.LicniPodaci.Adresa,
-                    BrojTelefona = k.LicniPodaci.BrojTelefona,
-                    Email = k.LicniPodaci.Email,
-                    Grad = k.Grad.Naziv,
-                    Ime = k.LicniPodaci.Ime,
-                    Prezime=k.LicniPodaci.Prezime,
-                    KorisnikId = k.Id,
-                    DokumentVerifikacije = x.DokumentVerifikacije
-                }) ;
+                    lista.Add(new SelectListNeverifikovaniPrimaociVM
+                    {
+                        Adresa = k.LicniPodaci.Adresa,
+                        BrojTelefona = k.LicniPodaci.BrojTelefona,
+                        Email = k.LicniPodaci.Email,
+                        Grad = k.Grad.Naziv,
+                        Ime = k.LicniPodaci.Ime,
+                        Prezime = "",
+                        KorisnikId = k.Id,
+                        DokumentVerifikacije = x.DokumentVerifikacije
+
+                    });
+                }
+                else
+                {
+                    lista.Add(new SelectListNeverifikovaniPrimaociVM
+                    {
+                        Adresa = k.LicniPodaci.Adresa,
+                        BrojTelefona = k.LicniPodaci.BrojTelefona,
+                        Email = k.LicniPodaci.Email,
+                        Grad = k.Grad.Naziv,
+                        Ime = k.LicniPodaci.Ime,
+                        Prezime = k.LicniPodaci.Prezime,
+                        KorisnikId = k.Id,
+                        DokumentVerifikacije = x.DokumentVerifikacije
+
+                    });
+                }
+
+                
             }
 
             return Json(lista);

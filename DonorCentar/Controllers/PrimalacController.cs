@@ -66,27 +66,14 @@ namespace DonorCentar.Controllers
             return View(korisnikViewModel);
         }
 
-        public ActionResult Obavijesti()
+        public ActionResult Obavijesti(int? page)
         {
-            Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
 
-            ObavijestiVM model = new ObavijestiVM
-            {
-                rows = db.Obavijest.Select(o => new ObavijestiVM.Row
-                {
-                    AdminId=o.AdminId,
-                    Naslov=o.Naslov,
-                    Sadrzaj= o.Sadrzaj,
-                    ObavijestId = o.ObavijestId,
-                    Vrijeme = o.Vrijeme
-                    
-                    
-                }).ToList()
-            };
+            IEnumerable<Obavijest> obavijesti = db.Obavijest.ToList();
+
 
             this.PostaviViewBag("Obavijesti");
-            return View(model);
+            return View(obavijesti.ToPagedList(page ?? 1, 2));
         }
 
         public ActionResult DodajPotrebu()

@@ -4,6 +4,8 @@
 
 @{
     ViewData["Title"] = "NeverifikovaniPrimaoci";
+    var poruka = (string)TempData["error_poruka"];
+
     Layout = "~/Views/Shared/_Administrator.cshtml";
 }
 
@@ -16,9 +18,13 @@
                     <th>Email</th>
                     <th>Broj telefona</th>
                     <th>Adresa</th>
-                    <th>Akcija</th>
+                    <th>Prikaži dokument</th>
+
+                    <th>Verifikuj</th>
+
                 </tr>
             </thead>
+
             @*<tbody id="tableBody">
                 @foreach (var x in Model)
                 {
@@ -27,15 +33,23 @@
                         <td>@x.LicniPodaci.Email</td>
                         <td>@x.LicniPodaci.BrojTelefona</td>
                         <td>@x.LicniPodaci.Adresa, @x.Grad.Naziv</td>
+                        <td><a asp-action="Documents" asp-route-id="@x.Id" class="btn btn-success">Prikaži dokument</a></td>
                         <td><a class="btn btn-success" asp-route-korisnikId="@x.Id" asp-action="Verifikuj">Verifikuj</a></td>
                     </tr>
                 }
             </tbody>*@
         </table>
+        @if (poruka != null)
+        {
+            <br />
+            <div class="alert alert-danger mt-4">
+                <p>@poruka</p>
+            </div>
+        }
         @*@Html.PagedListPager(Model, page => Url.Action("NeverifikovaniPrimaoci", new
- {
-  page*@
- @*}))*@
+        {
+         page*@
+        @*}))*@
     </div>
 </div>
 
@@ -56,8 +70,9 @@
                     <td>${val.email}</td>
                     <td>${val.brojTelefona}</td>
                     <td>${val.adresa}, ${val.grad}</td>
-                    <td><a class="btn btn-success" href="/Administrator/Verifikuj?korisnikId=${val.korisnikId}">Verifikuj</a>
-                    <a class="btn btn-success" href="/Administrator/Documents/${val.korisnikId}">Prikaži dokument</a></td></tr>`)
+                    <td><a class="btn btn-dark" href="/Administrator/Documents/${val.korisnikId}">Prikaži dokument</a></td>
+                    <td><a class="btn btn-success" href="/Administrator/Verifikuj?korisnikId=${val.korisnikId}">Verifikuj</a></td>
+                    </tr>`)
             });
                 $("<tbody>", { html: items.join("") }).appendTo("#table");
 
