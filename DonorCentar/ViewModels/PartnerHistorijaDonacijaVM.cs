@@ -15,7 +15,7 @@ namespace DonorCentar.Web.ViewModels
          
 
             public string Primalac { get; set; }
-            
+            public int DonacijaId { get; set; }
         }
 
         }

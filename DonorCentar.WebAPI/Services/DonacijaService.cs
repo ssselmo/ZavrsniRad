@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DonorCentar.Model.Requests;
+using DonorCentar.Models;
 using DonorCentar.WebAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,11 +14,12 @@ namespace DonorCentar.WebAPI.Services
 
     public class DonacijaService : BaseCRUDService<Model.Donacija, Database.Donacija, DonacijaSearchRequest, DonacijaInsertRequest, DonacijaInsertRequest>, IDonacijaService
     {
-        public DonacijaService(BazaPodataka context, IMapper mapper)
+        public DonacijaService(DonorCentar.WebAPI.Database.BazaPodataka context, IMapper mapper)
             : base(context, mapper)
         {
         }
 
+       // public DonorCentar.Model.Korisnik LogiraniKorisnik { get; private set; }
 
         public override IEnumerable<Model.Donacija> Get(DonacijaSearchRequest search = null)
         {
@@ -88,6 +90,10 @@ namespace DonorCentar.WebAPI.Services
             return _mapper.Map<Model.Donacija>(entity);
         }
 
-       
+        //public override Model.Donacija Update(int id, DonacijaInsertRequest request)
+        //{
+        //    return base.Update(id, request);
+        //}
+
     }
 }

@@ -44,8 +44,8 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
 
+                                    <ColumnDefinition Width="7*" />
                                     <ColumnDefinition Width="Auto" />
-                                    
                                 
                                     
 
@@ -110,11 +110,12 @@
                             FontSize="16" />
                                     
                                 </StackLayout>
-                                
-           
 
 
-            <BoxView Grid.Row="2" Grid.ColumnSpan="2" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
+                                <ImageButton Grid.RowSpan="2" Grid.Column="2" Source="kanta.jpg"  HeightRequest="40" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:DonacijeSaTransportomViewModel}}, Path=UkloniCommand}" CommandParameter="{Binding .}"/>
+
+
+                                <BoxView Grid.Row="2" Grid.ColumnSpan="3" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" CornerRadius="10"/>
                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

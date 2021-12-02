@@ -59,7 +59,7 @@
                                         <Label.FormattedText >
                                             <FormattedString>
                                                 <FormattedString.Spans>
-                                                    <Span FontAttributes="Bold" Text="{Binding TipDonacije.Tip}"/>
+                                                    <Span FontAttributes="Bold" FontSize="17" Text="{Binding TipDonacije.Tip}"/>
                                                     <Span Text=" - "/>
                                                     <Span Text="{Binding Donor.Ime}"/>
                                                     <Span Text=" "/>

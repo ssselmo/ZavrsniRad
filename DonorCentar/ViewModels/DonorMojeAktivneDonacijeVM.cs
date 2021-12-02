@@ -17,6 +17,8 @@ namespace DonorCentar.ViewModels
             public int? InformacijaId { get; set; }
             public int PrimalacId { get; set; }
             public int StatusId { get; set; }
+
+            public bool Transport { get; set; }
         }
     }
 }

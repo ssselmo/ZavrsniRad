@@ -57,9 +57,9 @@ namespace DonorCentar.Controllers
                 ProfilnaSlika = k1.LicniPodaci.ProfilnaSlika,
                 Grad = k1.Grad.Naziv,
                 Verifikovan = verifikovan,
-                PozitivniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == primalacId).Count(d => d.DojamId == 3),
-                NeutralniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == primalacId).Count(d => d.DojamId == 2),
-                NegativniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == primalacId).Count(d => d.DojamId == 1)
+                PozitivniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == k.Id).Count(d => d.DojamId == 3),
+                NeutralniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == k.Id).Count(d => d.DojamId == 2),
+                NegativniDojmovi = db.DojamKorisnik.Where(d => d.Donacija.PrimalacId == k.Id).Count(d => d.DojamId == 1)
             };
 
             this.PostaviViewBag("Index");
@@ -105,9 +105,12 @@ namespace DonorCentar.Controllers
                 JedinicaMjere = (JedinicaMjere)donacija.JedinicaMjere,
                 Kolicina = (int)donacija.Kolicina,
                 Opis = donacija.Opis,
-                TipDonacijeId = donacija.TipDonacijeId
+                TipDonacijeId = donacija.TipDonacijeId,
+               
             };
 
+            if (donacija.TransportId != null)
+                viewModel.Transport = true;
             this.PostaviViewBag("MojePotrebe");
             return View("DodajPotrebu", viewModel);
         }
@@ -157,7 +160,13 @@ namespace DonorCentar.Controllers
                 TipDonacijeId = viewModel.TipDonacijeId,
                 VrstaDonacijeId = 2,
                 InformacijeId = viewModel.Transport ? 4 : 1
+              
             };
+
+            if (viewModel.Transport)
+                d.TransportId = k.Id;
+            else
+                d.TransportId = null;
 
             if (viewModel.DonacijaId == 0)
             {
@@ -170,6 +179,9 @@ namespace DonorCentar.Controllers
                 objectDb.Kolicina = (int)viewModel.Kolicina;
                 objectDb.Opis = viewModel.Opis;
                 objectDb.TipDonacijeId = viewModel.TipDonacijeId;
+                objectDb.InformacijeId = d.InformacijeId;
+                objectDb.TransportId = d.TransportId;
+                   
             }
 
             db.SaveChanges();

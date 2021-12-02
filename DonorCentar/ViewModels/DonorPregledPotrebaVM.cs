@@ -17,6 +17,7 @@ namespace DonorCentar.ViewModels
             public string StatusOpis { get; set; }
             public int StatusId { get; set; }
             public int PrimalacId { get; set; }
+            public bool Transport { get; set; }
         }
     }
 }

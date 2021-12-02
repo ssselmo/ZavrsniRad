@@ -12,6 +12,7 @@ namespace DonorCentar.WebAPI.Controllers
     {
         public DonacijaController(IDonacijaService service) : base(service)
         {
+            
         }
 
     }

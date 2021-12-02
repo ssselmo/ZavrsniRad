@@ -15,12 +15,12 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.BackgroundColor" Value= "DarkOrange" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="DarkOrange" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
@@ -42,19 +42,18 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="DarkOrange" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="DarkOrange" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-          
             <Style Class="Style1" TargetType="Layout" ApplyToDerivedTypes="True">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
@@ -81,8 +80,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
-                                    
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="DarkOrange" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -113,14 +111,17 @@
     <FlyoutItem Title="Moje potrebe" IsEnabled="False" StyleClass="Style1">
         <ShellContent Route="MojePotrebePage" ContentTemplate="{DataTemplate local:MojePotrebePage}" />
     </FlyoutItem>
-
+    <FlyoutItem Title="Primljene donacije" IsEnabled="False" StyleClass="Style1" >
+        <ShellContent Route="PrimljeneDonacijePage" ContentTemplate="{DataTemplate local:PrimljeneDonacijePage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Donori" IsEnabled="False" StyleClass="Style1" >
+        <ShellContent Route="DonoriPage" ContentTemplate="{DataTemplate local:DonoriPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Partneri" IsEnabled="False" StyleClass="Style1">
         <ShellContent Route="PartneriPage" ContentTemplate="{DataTemplate local:PartneriPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Primljene donacije" IsEnabled="False" StyleClass="Style1" >
-        <ShellContent Route="PrimljeneDonacijePage" ContentTemplate="{DataTemplate local:PrimljeneDonacijePage}" />
-    </FlyoutItem>
+   
     
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

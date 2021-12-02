@@ -15,12 +15,12 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.BackgroundColor" Value= "DarkOrange" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="DarkOrange" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
@@ -42,12 +42,12 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="DarkOrange" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Selected">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="DarkOrange" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -64,7 +64,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="DarkOrange" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
@@ -79,7 +79,15 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-
+    <FlyoutItem Title="Moj profil">
+        <ShellContent Route="MojProfilPage" ContentTemplate="{DataTemplate local:MojProfilPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Obavijesti">
+        <ShellContent Route="AdminObavijestiPage" ContentTemplate="{DataTemplate local:AdminObavijestiPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Dodaj novu obavijest" >
+        <ShellContent Route="DodajObavijestPage" ContentTemplate="{DataTemplate local:DodajObavijestPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Primaoci" >
         <ShellContent Route="AdminPrimaociPage" ContentTemplate="{DataTemplate local:AdminPrimaociPage}" />
     </FlyoutItem>
@@ -90,15 +98,9 @@
     <FlyoutItem Title="Partneri" >
         <ShellContent Route="PartneriPage" ContentTemplate="{DataTemplate local:PartneriPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Dodaj novu obavijest" >
-        <ShellContent Route="DodajObavijestPage" ContentTemplate="{DataTemplate local:DodajObavijestPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Obavijesti">
-        <ShellContent Route="AdminObavijestiPage" ContentTemplate="{DataTemplate local:AdminObavijestiPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Moj profil">
-        <ShellContent Route="MojProfilPage" ContentTemplate="{DataTemplate local:MojProfilPage}" />
-    </FlyoutItem>
+    
+    
+    
    
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

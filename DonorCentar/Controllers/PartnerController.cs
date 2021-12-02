@@ -108,6 +108,20 @@ namespace DonorCentar.Controllers
             return RedirectToAction("HistorijaDonacija");
 
         }
+        public ActionResult UkloniTransport(int donacijaId)
+        {
+            Korisnik k = HttpContext.GetLogiraniKorisnik();
+
+            Donacija d = db.Donacija.Find(donacijaId);
+            d.StatusId = 1;
+            d.TransportId = null;
+
+
+            db.SaveChanges();
+
+            return RedirectToAction("HistorijaDonacija");
+
+        }
 
         public ActionResult HistorijaDonacija()
         {
@@ -118,7 +132,8 @@ namespace DonorCentar.Controllers
                 rows = db.Donacija.Where(x => x.TransportId == k.Id).Include(x => x.Donor.Grad).Include(x => x.Primalac.Grad).Include(x => x.Donor.LicniPodaci).Include(x => x.Primalac.LicniPodaci).Select(x=>new PartnerHistorijaDonacijaVM.Row
                 {
                     Donor=x.Donor.LicniPodaci.ImePrezime+ " "+ x.Donor.Grad.Naziv+ " / " + x.Donor.LicniPodaci.BrojTelefona,
-                    Primalac=x.Primalac.LicniPodaci.ImePrezime + " " + x.Primalac.Grad.Naziv + " / " + x.Primalac.LicniPodaci.BrojTelefona
+                    Primalac=x.Primalac.LicniPodaci.ImePrezime + " " + x.Primalac.Grad.Naziv + " / " + x.Primalac.LicniPodaci.BrojTelefona,
+                    DonacijaId=x.DonacijaId
 
                 }).ToList()
             };

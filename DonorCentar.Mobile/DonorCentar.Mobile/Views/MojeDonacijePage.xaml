@@ -57,10 +57,10 @@
 
 
                                     <Label  Grid.Column="0" VerticalOptions="Center"
-                            LineBreakMode="NoWrap" 
+                            LineBreakMode="HeadTruncation"
                            
                             FontSize="16">
-                                        <Label.FormattedText >
+                                        <Label.FormattedText  >
                                             <FormattedString>
                                                 <FormattedString.Spans>
                                                     <Span FontAttributes="Bold" FontSize="17" Text="{Binding TipDonacije.Tip}"/>

@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DonorCentar.Model\DonorCentar.Model.csproj" />
+    <ProjectReference Include="..\DonorCentar\DonorCentar.Web.csproj" />
   </ItemGroup>
 
 

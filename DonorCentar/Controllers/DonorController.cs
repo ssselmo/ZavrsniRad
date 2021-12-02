@@ -47,10 +47,7 @@ namespace DonorCentar.Controllers
                 BrojTelefona = k1.LicniPodaci.BrojTelefona,
                 Email = k1.LicniPodaci.Email,
                 ProfilnaSlika = k1.LicniPodaci.ProfilnaSlika,
-                Grad = k1.Grad.Naziv,
-                PozitivniDojmovi = db.DojamKorisnik.Where(d => d.KorisnikId == k.Id).Count(d => d.DojamId == 1),
-                NeutralniDojmovi = db.DojamKorisnik.Where(d => d.KorisnikId == k.Id).Count(d => d.DojamId == 2),
-                NegativniDojmovi = db.DojamKorisnik.Where(d => d.KorisnikId == k.Id).Count(d => d.DojamId == 3)
+                Grad = k1.Grad.Naziv
             };
 
             this.PostaviViewBag("Index");
@@ -128,7 +125,9 @@ namespace DonorCentar.Controllers
                     PrimalacId = (int)d.PrimalacId,
                     StatusId = d.StatusId,
                     StatusOpis = d.Status.Opis,
-                    TipDonacije = d.TipDonacije.Tip
+                    TipDonacije = d.TipDonacije.Tip,
+                    Transport = d.TransportId == null
+
                 }).ToList()
             };
 
@@ -254,7 +253,8 @@ namespace DonorCentar.Controllers
         public ActionResult MojeAktivneDonacije()
         {
             Korisnik k = HttpContext.GetLogiraniKorisnik();
-            
+
+           
 
             var model = new DonorMojeAktivneDonacijeVM
             {
@@ -264,17 +264,18 @@ namespace DonorCentar.Controllers
                     StatusOpis = d.Status.Opis,
                     TipDonacije = d.TipDonacije.Tip,
                     InformacijaId = d.InformacijeId,
-                    PrimalacId = (int)d.PrimalacId
+                    PrimalacId = (int)d.PrimalacId,
+                    Transport= d.TransportId==null
+                    
                 }).ToList()
             };
 
             for (int i = 0; i < model.rows.Count; i++)
             {
-                var primalacKorisnik = db.Primalac.Where(p => p.KorisnikId == model.rows[i].PrimalacId).SingleOrDefault();
-
-                if (primalacKorisnik != null)
+                string licniNaziv = db.Korisnik.Where(a => a.Id == model.rows[i].PrimalacId).Include(a => a.LicniPodaci).SingleOrDefault().LicniPodaci.ImePrezime;
+                if (licniNaziv != null)
                 {
-                    string licniNaziv = db.Korisnik.Where(a => a.Id == primalacKorisnik.KorisnikId).Include(a => a.LicniPodaci).SingleOrDefault().LicniPodaci.ImePrezime;
+                    
                     model.rows[i].LicniPodaciNaziv = licniNaziv;
                 }
                 else

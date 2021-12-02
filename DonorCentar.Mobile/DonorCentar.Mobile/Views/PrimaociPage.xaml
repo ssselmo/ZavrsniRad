@@ -42,7 +42,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
 
-                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="2*" />
                                     <ColumnDefinition Width="Auto" />
 
                                     <ColumnDefinition Width="Auto" />
@@ -61,8 +61,7 @@
                                                     <Span FontAttributes="Bold" FontSize="16" Text="{Binding Ime}"/>
                                                     <Span Text=" "/>
                                                     <Span FontAttributes="Bold" FontSize="16" Text="{Binding Prezime}"/>
-                                                    <Span Text=" / "/>
-                                                    <Span Text="{Binding GradNaziv}"/>
+                                                  
 
                                                 </FormattedString.Spans>
                                             </FormattedString>

@@ -20,6 +20,7 @@ namespace DonorCentar.Mobile.ViewModels
 
 
         public ICommand UcitajCommand { get; }
+        public ICommand UkloniCommand { get; }
 
 
         private string pretraga;
@@ -42,10 +43,11 @@ namespace DonorCentar.Mobile.ViewModels
         {
 
             UcitajCommand = new Command(async () => await UcitajDonacije());
+            UkloniCommand = new Command<Donacija>(OnUkloniClicked);
 
 
         }
-        
+
 
         private async Task UcitajDonacije()
         {
@@ -65,6 +67,15 @@ namespace DonorCentar.Mobile.ViewModels
             }
 
 
+        }
+
+        private async void OnUkloniClicked(Donacija obj)
+        {
+
+            var entity = await _servicedonacija.Delete<Donacija>(obj.DonacijaId);
+
+            if (entity != null)
+                await UcitajDonacije();
         }
     }
 }

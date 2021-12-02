@@ -12,7 +12,7 @@
                 <tr>
                     <th scope="col">Primalac</th>
                     <th scope="col">Tip donacije</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Transport</th>
                     <th></th>
                     <th></th>
 
@@ -24,11 +24,11 @@
                 <tr>
                     <td>@x.LicniPodaciNaziv</td>
                     <td>@x.TipDonacije</td>
-                    <td>@x.StatusOpis</td>
-                    <td><a class="btn btn-info" asp-route-donacijaId="@x.DonacijaId" asp-route-akcija="1" asp-action="DetaljiDonacije">Detalji</a></td>
+                    <td><input asp-for="@x.Transport" onclick="return false"/></td>
+                    <td><a class="btn btn-outline-info" asp-route-donacijaId="@x.DonacijaId" asp-route-akcija="1" asp-action="DetaljiDonacije">Detalji</a></td>
 
-                    <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="PrekiniDonaciju">Prekini donaciju</a></td>
-                    <td><a class="btn btn-danger" asp-route-Id="@x.DonacijaId" asp-action="Dojam">Dojam</a></td>
+                    <td><a class="btn btn-outline-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="PrekiniDonaciju">Prekini donaciju</a></td>
+                    <td><a class="btn btn-outline-warning" asp-route-Id="@x.DonacijaId" asp-action="Dojam">Dojam</a></td>
 
 
 
@@ -70,3 +70,4 @@
         }
     </script>
 }
+

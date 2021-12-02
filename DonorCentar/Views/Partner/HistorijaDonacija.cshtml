@@ -16,6 +16,7 @@
                                 <tr>
                                     <th scope="col">Donor</th>
                                     <th scope="col">Primalac</th>
+                                    <th>Ukloni transport</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,8 +25,7 @@
                                     <tr>
                                         <td>@x.Donor</td>
                                         <td>@x.Primalac</td>
-
-
+                                        <td><a class="btn btn-danger" asp-route-donacijaId="@x.DonacijaId" asp-action="UkloniTransport">Ukloni</a></td>
 
 
                                     </tr>
