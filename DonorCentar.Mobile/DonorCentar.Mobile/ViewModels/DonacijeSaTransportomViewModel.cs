@@ -71,8 +71,9 @@ namespace DonorCentar.Mobile.ViewModels
 
         private async void OnUkloniClicked(Donacija obj)
         {
-
-            var entity = await _servicedonacija.Delete<Donacija>(obj.DonacijaId);
+            obj.TransportId = null;
+            obj.InformacijeId = 1;
+            var entity = await _servicedonacija.Update<Donacija>(obj.DonacijaId, obj);
 
             if (entity != null)
                 await UcitajDonacije();

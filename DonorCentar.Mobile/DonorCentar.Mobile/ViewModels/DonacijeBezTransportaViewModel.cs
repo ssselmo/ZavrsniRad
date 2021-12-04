@@ -49,7 +49,7 @@ namespace DonorCentar.Mobile.ViewModels
         }
         private async void OnPrihvatiClicked(Donacija obj)
         {
-
+            obj.InformacijeId = 4;
             obj.TransportId = APIService.Korisnik.Id;
             var entity = await _servicedonacija.Update<Donacija>(obj.DonacijaId, obj);
 

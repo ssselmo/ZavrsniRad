@@ -90,10 +90,7 @@ namespace DonorCentar.WebAPI.Services
             return _mapper.Map<Model.Donacija>(entity);
         }
 
-        //public override Model.Donacija Update(int id, DonacijaInsertRequest request)
-        //{
-        //    return base.Update(id, request);
-        //}
+       
 
     }
 }
