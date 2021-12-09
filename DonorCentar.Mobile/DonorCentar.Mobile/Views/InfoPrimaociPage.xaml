@@ -30,15 +30,37 @@
 
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+
+
+
+
+
+
+
+
+
+
+
+
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
 
                         <ColumnDefinition Width="150" />
-                        
+
                         <ColumnDefinition Width="Auto" />
 
-                        
-                       
+                        <ColumnDefinition Width="*" />
+
+
+
+
+
 
                     </Grid.ColumnDefinitions>
                     <BoxView Grid.Row="0" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="Orange"/>
@@ -63,7 +85,7 @@
 
 
                     <Label FontSize="17" Text="Grad" Grid.Row="1" Grid.Column="0"></Label>
-                    
+
                     <Label  Grid.Row="1"  Grid.Column="1" VerticalOptions="Center"
                             LineBreakMode="NoWrap" 
                           >
@@ -72,15 +94,19 @@
                                 <FormattedString.Spans>
 
                                     <Span FontSize="17" FontAttributes="Bold" Text="{Binding  Primalac.GradNaziv}"/>
-                                    
+
 
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
+
+
+
                     <BoxView Grid.Row="2" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" />
-                    <Label FontSize="17" Text="Broj telefona" Grid.Row="2" Grid.Column="0"></Label>
+
+                    <Label FontSize="17" Text="Adresa" Grid.Row="2" Grid.Column="0"></Label>
 
                     <Label  Grid.Row="2"  Grid.Column="1" VerticalOptions="Center"
                             LineBreakMode="NoWrap" 
@@ -89,22 +115,63 @@
                             <FormattedString>
                                 <FormattedString.Spans>
 
-                                    <Span FontSize="17" FontAttributes="Bold"  Text="{Binding Primalac.Korisnik.LicniPodaci.BrojTelefona}"/>
-                                    
+                                    <Span FontSize="17" FontAttributes="Bold"  Text="{Binding Primalac.Korisnik.LicniPodaci.Adresa}"/>
+
 
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
-                    <BoxView Grid.Row="3" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray"/>
-                    <Label FontSize="17" Text="Verifikovan" Grid.Row="3" Grid.Column="0"></Label>
 
-                    <CheckBox  IsChecked="{Binding Primalac.Verifikovan}" Grid.Column="1" Grid.Row="3" IsEnabled="False" ></CheckBox>
 
-                    
-                   
-                
+                    <BoxView Grid.Row="3" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" />
+
+                    <Label FontSize="17" Text="Email" Grid.Row="3" Grid.Column="0"></Label>
+
+                    <Label  Grid.Row="3"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                          >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17" FontAttributes="Bold" Text="{Binding  Primalac.Email}"/>
+
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="4" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray" />
+
+
+                    <Label FontSize="17" Text="Broj telefona" Grid.Row="4" Grid.Column="0"></Label>
+
+                    <Label  Grid.Row="4"  Grid.Column="1" VerticalOptions="Center"
+                            LineBreakMode="NoWrap" 
+                          >
+                        <Label.FormattedText >
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span FontSize="17" FontAttributes="Bold"  Text="{Binding Primalac.Korisnik.LicniPodaci.BrojTelefona}"/>
+
+
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <BoxView Grid.Row="5" Grid.ColumnSpan="4" Margin="0,3,0,0" HeightRequest="1" BackgroundColor="LightGray"/>
+                    <Label FontSize="17" Text="Verifikovan" Grid.Row="5" Grid.Column="0"></Label>
+
+                    <CheckBox  IsChecked="{Binding Primalac.Verifikovan}" Grid.Column="1" Grid.Row="5" IsEnabled="False" ></CheckBox>
+
+
+
+
                 </Grid>
 
 

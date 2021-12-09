@@ -62,7 +62,43 @@
 
             </Grid>
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" >
-                <Button x:Name="Submit_Button" Margin="80,0,80,0" BorderRadius="0" BackgroundColor="DarkOrange" Text="Doniraj" Command="{Binding SubmitCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+                <StackLayout.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="VisualStateManager.VisualStateGroups">
+                            <VisualStateGroupList>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Focused">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="DarkOrange" />
+                                            <Setter Property="TextColor" Value="White" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateGroupList>
+                        </Setter>
+                    </Style>
+
+
+                   
+                </StackLayout.Resources>
+                <Button x:Name="Submit_Button" Margin="80,0,80,0" BorderRadius="0" BackgroundColor="DarkOrange"  Text="Doniraj" Command="{Binding SubmitCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"/>
+
             </StackLayout>
         </StackLayout>
     </ContentView>
